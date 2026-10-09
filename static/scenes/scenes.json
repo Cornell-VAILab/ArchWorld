@@ -1,0 +1,741 @@
+{
+  "_note": "Each scene has two point clouds in the same coordinate frame: the landmark-filtered ground truth (pts_landmark/) and the full reconstruction before landmark filtering (pts/). Both are voxel-downsampled at 0.004 units (mean position/color per voxel, single-point voxels dropped) and kept in the reconstruction's original units; multiply distances by `scale` to get meters. Extents: landmark from ArchWorld_metadata_landmark.csv, full from ArchWorld_metadata.csv (Real_Extent_Meters). `view` frames the initial camera; up/dir were derived from the COLMAP cameras including the Y/Z flip applied by gt_to_glb.py.",
+  "scenes": [
+    {
+      "id": "India_Gate",
+      "name": "India Gate",
+      "qid": "Q245347",
+      "country": "India",
+      "region": "South Asia",
+      "wikidata_type": "triumphal arch",
+      "coarse_type": "Arch/Gate",
+      "year": "1931",
+      "scale": 17.841773936132963,
+      "view": {
+        "center": [
+          0.1754000037908554,
+          0.2590000033378601,
+          -1.722599983215332
+        ],
+        "up": [
+          0.0821,
+          0.9651,
+          -0.2488
+        ],
+        "dir": [
+          0.6253,
+          0.1444,
+          0.7669
+        ],
+        "dist": 2.94,
+        "point_size": 0.00817
+      },
+      "images": [
+        {
+          "src": "static/scenes/India_Gate/images/01.jpg",
+          "source": "000038.jpg"
+        },
+        {
+          "src": "static/scenes/India_Gate/images/02.jpg",
+          "source": "000607.jpg"
+        },
+        {
+          "src": "static/scenes/India_Gate/images/03.jpg",
+          "source": "000781.jpg"
+        },
+        {
+          "src": "static/scenes/India_Gate/images/04.jpg",
+          "source": "000944.jpg"
+        },
+        {
+          "src": "static/scenes/India_Gate/images/05.jpg",
+          "source": "001069.jpg"
+        },
+        {
+          "src": "static/scenes/India_Gate/images/06.jpg",
+          "source": "001285.jpg"
+        }
+      ],
+      "versions": {
+        "landmark": {
+          "label": "Landmark only",
+          "glb": "static/scenes/India_Gate/points_landmark.glb",
+          "extent_m": 74.59,
+          "bbox": {
+            "min": [
+              -0.95414,
+              -1.01065,
+              -3.053
+            ],
+            "max": [
+              1.29,
+              1.36001,
+              -0.44106
+            ]
+          }
+        },
+        "full": {
+          "label": "Before Segmentation",
+          "glb": "static/scenes/India_Gate/points_full.glb",
+          "extent_m": 116.44,
+          "bbox": {
+            "min": [
+              -0.95608,
+              -1.15057,
+              -3.05218
+            ],
+            "max": [
+              2.40325,
+              1.36603,
+              1.94546
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "Kinkaku-ji",
+      "name": "Kinkaku-ji",
+      "qid": "Q270983",
+      "country": "Japan",
+      "region": "East Asia",
+      "wikidata_type": "Japanese garden",
+      "coarse_type": "Misc",
+      "year": "1397",
+      "scale": 2.663599728082785,
+      "versions": {
+        "landmark": {
+          "label": "Landmark only",
+          "glb": "static/scenes/Kinkaku_ji/points_landmark.glb",
+          "extent_m": 36.66,
+          "bbox": {
+            "min": [
+              -5.40995,
+              -3.17441,
+              -27.42861
+            ],
+            "max": [
+              3.31362,
+              3.38788,
+              -19.04323
+            ]
+          }
+        },
+        "full": {
+          "label": "Before Segmentation",
+          "glb": "static/scenes/Kinkaku_ji/points_full.glb",
+          "extent_m": 194.12,
+          "bbox": {
+            "min": [
+              -33.57826,
+              -3.11575,
+              -57.63325
+            ],
+            "max": [
+              13.60952,
+              8.63277,
+              -3.35031
+            ]
+          }
+        }
+      },
+      "view": {
+        "center": [
+          -1.1811000108718872,
+          0.23109999299049377,
+          -23.72949981689453
+        ],
+        "up": [
+          -0.0161,
+          0.9993,
+          -0.0343
+        ],
+        "dir": [
+          0.1903,
+          0.0367,
+          0.981
+        ],
+        "dist": 7.562,
+        "point_size": 0.02689
+      },
+      "images": [
+        {
+          "src": "static/scenes/Kinkaku_ji/images/01.jpg",
+          "source": "12_-_panoramio_-_ito1117_(1).jpg"
+        },
+        {
+          "src": "static/scenes/Kinkaku_ji/images/02.jpg",
+          "source": "Kinkaku-Snow-8.jpg"
+        },
+        {
+          "src": "static/scenes/Kinkaku_ji/images/03.jpg",
+          "source": "Kinkaku3402.jpg"
+        },
+        {
+          "src": "static/scenes/Kinkaku_ji/images/04.jpg",
+          "source": "Kinkakujicho,_Kita_Ward,_Kyoto,_Kyoto_Prefecture_603-8361,_Japan_-_panoramio_(4).jpg"
+        },
+        {
+          "src": "static/scenes/Kinkaku_ji/images/05.jpg",
+          "source": "Rokuon-ji,_Golden_Pavilion_(50910232938).jpg"
+        },
+        {
+          "src": "static/scenes/Kinkaku_ji/images/06.jpg",
+          "source": "鹿苑寺金閣_-_panoramio_(3).jpg"
+        }
+      ]
+    },
+    {
+      "id": "Saint_Andrew_church_in_Kraków",
+      "name": "Saint Andrew church in Kraków",
+      "qid": "Q1195738",
+      "country": "Poland",
+      "region": "Europe",
+      "wikidata_type": "church building",
+      "coarse_type": "Church/Cathedral",
+      "year": "1001",
+      "scale": 12.20859745351585,
+      "versions": {
+        "landmark": {
+          "label": "Landmark only",
+          "glb": "static/scenes/Saint_Andrew_church_in_Krakow/points_landmark.glb",
+          "extent_m": 55.89,
+          "bbox": {
+            "min": [
+              -1.44421,
+              -1.38173,
+              -5.41819
+            ],
+            "max": [
+              0.92596,
+              1.75458,
+              -3.07247
+            ]
+          }
+        },
+        "full": {
+          "label": "Before Segmentation",
+          "glb": "static/scenes/Saint_Andrew_church_in_Krakow/points_full.glb",
+          "extent_m": 164.68,
+          "bbox": {
+            "min": [
+              -5.03286,
+              -2.14157,
+              -7.66993
+            ],
+            "max": [
+              3.73593,
+              1.75711,
+              1.80899
+            ]
+          }
+        }
+      },
+      "view": {
+        "center": [
+          -0.15639999508857727,
+          0.0357000008225441,
+          -4.135499954223633
+        ],
+        "up": [
+          0.0635,
+          0.9968,
+          -0.0484
+        ],
+        "dir": [
+          0.0434,
+          0.0457,
+          0.998
+        ],
+        "dist": 3.286,
+        "point_size": 0.00715
+      },
+      "images": [
+        {
+          "src": "static/scenes/Saint_Andrew_church_in_Krakow/images/01.jpg",
+          "source": "02014_Andreaskirche_(Krakau).JPG"
+        },
+        {
+          "src": "static/scenes/Saint_Andrew_church_in_Krakow/images/02.jpg",
+          "source": "Kosciol_Swietego_Andrzeja,_Krakow_3.JPG"
+        },
+        {
+          "src": "static/scenes/Saint_Andrew_church_in_Krakow/images/03.jpg",
+          "source": "Kościół_św._Piotra_i_Pawła_przemasban53.JPG"
+        },
+        {
+          "src": "static/scenes/Saint_Andrew_church_in_Krakow/images/04.jpg",
+          "source": "Kraków,_kościół_pw._św._Andrzeja_03.JPG"
+        },
+        {
+          "src": "static/scenes/Saint_Andrew_church_in_Krakow/images/05.jpg",
+          "source": "Church_of_St._Andrew_(view_from_N),_56_Grodzka_street,_Old_Town,_Krakow,_Poland.jpg"
+        },
+        {
+          "src": "static/scenes/Saint_Andrew_church_in_Krakow/images/06.jpg",
+          "source": "Zespół_klasztorny_Klarysek,_ul._Grodzka_56,_Kosciol_św._Andrzeja.jpg"
+        }
+      ]
+    },
+    {
+      "id": "Cristo_Redentor_(Rio_de_Janeiro)",
+      "name": "Cristo Redentor (Rio de Janeiro)",
+      "qid": "Q79961",
+      "country": "Brazil",
+      "region": "Latin America",
+      "wikidata_type": "colossal statue of Jesus",
+      "coarse_type": "Monument",
+      "year": "1920",
+      "scale": 83.80873662277351,
+      "versions": {
+        "landmark": {
+          "label": "Landmark only",
+          "glb": "static/scenes/Cristo_Redentor_Rio_de_Janeiro/points_landmark.glb",
+          "extent_m": 64.46,
+          "bbox": {
+            "min": [
+              -0.23301,
+              -0.16139,
+              -0.59533
+            ],
+            "max": [
+              0.25988,
+              0.17968,
+              -0.11338
+            ]
+          }
+        },
+        "full": {
+          "label": "Before Segmentation",
+          "glb": "static/scenes/Cristo_Redentor_Rio_de_Janeiro/points_full.glb",
+          "extent_m": 287.72,
+          "bbox": {
+            "min": [
+              -0.8214,
+              -0.816,
+              -0.59573
+            ],
+            "max": [
+              0.78725,
+              0.74953,
+              2.0018
+            ]
+          }
+        }
+      },
+      "view": {
+        "center": [
+          0.007699999958276749,
+          0.008500000461935997,
+          -0.3716999888420105
+        ],
+        "up": [
+          0.0711,
+          0.9437,
+          -0.323
+        ],
+        "dir": [
+          -0.016,
+          0.3249,
+          0.9456
+        ],
+        "dist": 0.507,
+        "point_size": 0.00096
+      },
+      "images": [
+        {
+          "src": "static/scenes/Cristo_Redentor_Rio_de_Janeiro/images/01.jpg",
+          "source": "000000.jpg"
+        },
+        {
+          "src": "static/scenes/Cristo_Redentor_Rio_de_Janeiro/images/02.jpg",
+          "source": "000055.jpg"
+        },
+        {
+          "src": "static/scenes/Cristo_Redentor_Rio_de_Janeiro/images/03.jpg",
+          "source": "000125.jpg"
+        },
+        {
+          "src": "static/scenes/Cristo_Redentor_Rio_de_Janeiro/images/04.jpg",
+          "source": "000175.jpg"
+        },
+        {
+          "src": "static/scenes/Cristo_Redentor_Rio_de_Janeiro/images/05.jpg",
+          "source": "000222.jpg"
+        },
+        {
+          "src": "static/scenes/Cristo_Redentor_Rio_de_Janeiro/images/06.jpg",
+          "source": "000344.jpg"
+        }
+      ]
+    },
+    {
+      "id": "Egyptian_Museum_(Cairo)",
+      "name": "Egyptian Museum (Cairo)",
+      "qid": "Q201219",
+      "country": "Egypt",
+      "region": "Africa",
+      "wikidata_type": "national museum",
+      "coarse_type": "Public Building",
+      "year": "1902",
+      "scale": 4.465923076780681,
+      "versions": {
+        "landmark": {
+          "label": "Landmark only",
+          "glb": "static/scenes/Egyptian_Museum_Cairo/points_landmark.glb",
+          "extent_m": 69.26,
+          "bbox": {
+            "min": [
+              -3.66623,
+              -0.60139,
+              -29.56523
+            ],
+            "max": [
+              9.86049,
+              5.15498,
+              -24.62156
+            ]
+          }
+        },
+        "full": {
+          "label": "Before Segmentation",
+          "glb": "static/scenes/Egyptian_Museum_Cairo/points_full.glb",
+          "extent_m": 161.58,
+          "bbox": {
+            "min": [
+              -11.42944,
+              -6.25265,
+              -37.45362
+            ],
+            "max": [
+              14.3901,
+              8.39011,
+              -16.76452
+            ]
+          }
+        }
+      },
+      "view": {
+        "center": [
+          2.768199920654297,
+          2.3039000034332275,
+          -26.928800582885742
+        ],
+        "up": [
+          -0.0462,
+          0.9637,
+          0.263
+        ],
+        "dir": [
+          -0.0781,
+          -0.266,
+          0.9608
+        ],
+        "dist": 8.509,
+        "point_size": 0.03787
+      },
+      "images": [
+        {
+          "src": "static/scenes/Egyptian_Museum_Cairo/images/01.jpg",
+          "source": "000010.jpg"
+        },
+        {
+          "src": "static/scenes/Egyptian_Museum_Cairo/images/02.jpg",
+          "source": "001922.jpg"
+        },
+        {
+          "src": "static/scenes/Egyptian_Museum_Cairo/images/03.jpg",
+          "source": "002852.jpg"
+        },
+        {
+          "src": "static/scenes/Egyptian_Museum_Cairo/images/04.jpg",
+          "source": "004149.jpg"
+        },
+        {
+          "src": "static/scenes/Egyptian_Museum_Cairo/images/05.jpg",
+          "source": "004239.jpg"
+        },
+        {
+          "src": "static/scenes/Egyptian_Museum_Cairo/images/06.jpg",
+          "source": "004316.jpg"
+        }
+      ]
+    },
+    {
+      "id": "Iolani_Palace",
+      "name": "Iolani Palace",
+      "qid": "Q423525",
+      "country": "United States",
+      "region": "North America",
+      "wikidata_type": "palace",
+      "coarse_type": "Misc",
+      "year": "1879",
+      "scale": 26.534102916008777,
+      "versions": {
+        "landmark": {
+          "label": "Landmark only",
+          "glb": "static/scenes/Iolani_Palace/points_landmark.glb",
+          "extent_m": 66.81,
+          "bbox": {
+            "min": [
+              -0.65268,
+              0.13406,
+              -4.20496
+            ],
+            "max": [
+              1.30029,
+              1.20806,
+              -3.03352
+            ]
+          }
+        },
+        "full": {
+          "label": "Before Segmentation",
+          "glb": "static/scenes/Iolani_Palace/points_full.glb",
+          "extent_m": 152.25,
+          "bbox": {
+            "min": [
+              -0.65386,
+              -0.00198,
+              -5.14449
+            ],
+            "max": [
+              1.48158,
+              1.38013,
+              -0.00102
+            ]
+          }
+        }
+      },
+      "view": {
+        "center": [
+          0.34549999237060547,
+          0.6394000053405762,
+          -3.547300100326538
+        ],
+        "up": [
+          -0.0095,
+          0.9899,
+          0.1411
+        ],
+        "dir": [
+          -0.1234,
+          -0.1412,
+          0.9823
+        ],
+        "dist": 1.349,
+        "point_size": 0.00492
+      },
+      "images": [
+        {
+          "src": "static/scenes/Iolani_Palace/images/01.jpg",
+          "source": "000030.jpg"
+        },
+        {
+          "src": "static/scenes/Iolani_Palace/images/02.jpg",
+          "source": "000929.jpg"
+        },
+        {
+          "src": "static/scenes/Iolani_Palace/images/03.jpg",
+          "source": "000963.jpg"
+        },
+        {
+          "src": "static/scenes/Iolani_Palace/images/04.jpg",
+          "source": "000998.jpg"
+        },
+        {
+          "src": "static/scenes/Iolani_Palace/images/05.jpg",
+          "source": "001034.jpg"
+        },
+        {
+          "src": "static/scenes/Iolani_Palace/images/06.jpg",
+          "source": "001081.jpg"
+        }
+      ]
+    },
+    {
+      "id": "Saint_Bartholomew_Parish_Church_(Magalang,_Pampanga)",
+      "name": "Saint Bartholomew Parish Church (Magalang, Pampanga)",
+      "qid": "Q19896090",
+      "country": "Philippines",
+      "region": "SE Asia",
+      "wikidata_type": "Catholic parish church",
+      "coarse_type": "Church/Cathedral",
+      "year": "1866",
+      "scale": 5.471556195994704,
+      "versions": {
+        "landmark": {
+          "label": "Landmark only",
+          "glb": "static/scenes/Saint_Bartholomew_Parish_Church_Magalang_Pampanga/points_landmark.glb",
+          "extent_m": 37.56,
+          "bbox": {
+            "min": [
+              -2.00488,
+              -1.31453,
+              -5.44009
+            ],
+            "max": [
+              2.63296,
+              2.07183,
+              -1.67805
+            ]
+          }
+        },
+        "full": {
+          "label": "Before Segmentation",
+          "glb": "static/scenes/Saint_Bartholomew_Parish_Church_Magalang_Pampanga/points_full.glb",
+          "extent_m": 110.67,
+          "bbox": {
+            "min": [
+              -3.00418,
+              -1.44275,
+              -5.52098
+            ],
+            "max": [
+              13.53941,
+              4.21661,
+              4.64839
+            ]
+          }
+        }
+      },
+      "view": {
+        "center": [
+          0.3662000000476837,
+          0.02459999918937683,
+          -3.458699941635132
+        ],
+        "up": [
+          0.0818,
+          0.9889,
+          -0.1244
+        ],
+        "dir": [
+          -0.3125,
+          0.144,
+          0.939
+        ],
+        "dist": 4.912,
+        "point_size": 0.00858
+      },
+      "images": [
+        {
+          "src": "static/scenes/Saint_Bartholomew_Parish_Church_Magalang_Pampanga/images/01.jpg",
+          "source": "0239jfSaint_Bartholomew_Church_Magalang_Pampangafvf_01.JPG"
+        },
+        {
+          "src": "static/scenes/Saint_Bartholomew_Parish_Church_Magalang_Pampanga/images/02.jpg",
+          "source": "291jfSaint_Bartholomew_Parish_Interior_Magalang_Pampangafvf_04.JPG"
+        },
+        {
+          "src": "static/scenes/Saint_Bartholomew_Parish_Church_Magalang_Pampanga/images/03.jpg",
+          "source": "291jfSaint_Bartholomew_Parish_Interior_Magalang_Pampangafvf_43.JPG"
+        },
+        {
+          "src": "static/scenes/Saint_Bartholomew_Parish_Church_Magalang_Pampanga/images/04.jpg",
+          "source": "3323jfSaint_Bartholomew_Parish_Church_Magalang_Pampangafvf_18.JPG"
+        },
+        {
+          "src": "static/scenes/Saint_Bartholomew_Parish_Church_Magalang_Pampanga/images/05.jpg",
+          "source": "3350jfSaint_Bartholomew_Parish_Magalang_Pampangafvf_47.JPG"
+        },
+        {
+          "src": "static/scenes/Saint_Bartholomew_Parish_Church_Magalang_Pampanga/images/06.jpg",
+          "source": "St._Bartholomew_Parish_Church_Fiesta,_Magalang,_Pampanga.jpg"
+        }
+      ]
+    },
+    {
+      "id": "Soltaniyeh_Dome",
+      "name": "Soltaniyeh Dome",
+      "qid": "Q20645774",
+      "country": "Iran",
+      "region": "West/Central Asia",
+      "wikidata_type": "mausoleum",
+      "coarse_type": "Tomb",
+      "year": "1312",
+      "scale": 23.276944700297737,
+      "versions": {
+        "landmark": {
+          "label": "Landmark only",
+          "glb": "static/scenes/Soltaniyeh_Dome/points_landmark.glb",
+          "extent_m": 119.03,
+          "bbox": {
+            "min": [
+              -0.38049,
+              -1.59877,
+              -6.06674
+            ],
+            "max": [
+              2.8814,
+              0.69498,
+              -2.86573
+            ]
+          }
+        },
+        "full": {
+          "label": "Before Segmentation",
+          "glb": "static/scenes/Soltaniyeh_Dome/points_full.glb",
+          "extent_m": 165.61,
+          "bbox": {
+            "min": [
+              -1.07551,
+              -1.68585,
+              -6.06877
+            ],
+            "max": [
+              3.01078,
+              0.72559,
+              -0.76709
+            ]
+          }
+        }
+      },
+      "view": {
+        "center": [
+          0.7930999994277954,
+          -0.3774999976158142,
+          -4.517399787902832
+        ],
+        "up": [
+          -0.1394,
+          0.9797,
+          -0.1442
+        ],
+        "dir": [
+          -0.4917,
+          0.0579,
+          0.8689
+        ],
+        "dist": 3.472,
+        "point_size": 0.00639
+      },
+      "images": [
+        {
+          "src": "static/scenes/Soltaniyeh_Dome/images/01.jpg",
+          "source": "000002.jpg"
+        },
+        {
+          "src": "static/scenes/Soltaniyeh_Dome/images/02.jpg",
+          "source": "000098.jpg"
+        },
+        {
+          "src": "static/scenes/Soltaniyeh_Dome/images/03.jpg",
+          "source": "000205.jpg"
+        },
+        {
+          "src": "static/scenes/Soltaniyeh_Dome/images/04.jpg",
+          "source": "000315.jpg"
+        },
+        {
+          "src": "static/scenes/Soltaniyeh_Dome/images/05.jpg",
+          "source": "000419.jpg"
+        },
+        {
+          "src": "static/scenes/Soltaniyeh_Dome/images/06.jpg",
+          "source": "000568.jpg"
+        }
+      ]
+    }
+  ]
+}

@@ -6,7 +6,7 @@
   
   <!-- Primary Meta Tags -->
   <!-- TODO: Replace with your paper title and author names -->
-  <meta name="title" content="Towards Reconstructing Geographically-Diverse Architecture with 3D Foundation Models">
+  <meta name="title" content="Towards Reconstructing Geographically Diverse Architecture with 3D Foundation Models">
   <!-- TODO: Write a compelling 150-160 character description of your research -->
   <meta name="description" content="We use a geographically diverse benchmark to conduct an analysis of 3D Foundation models and mitigate the disparities we find with an inference-time intervention.">
   <!-- TODO: Add 5-10 relevant keywords for your research area -->
@@ -19,45 +19,36 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="article">
   <!-- TODO: Replace with your institution or lab name -->
-  <meta property="og:site_name" content="Cornell University">
+  <meta property="og:site_name" content="Cornell Tech, Cornell University">
   <!-- TODO: Same as paper title above -->
-  <meta property="og:title" content="Towards Reconstructing Geographically-Diverse Architecture with 3D Foundation Models">
+  <meta property="og:title" content="Towards Reconstructing Geographically Diverse Architecture with 3D Foundation Models">
   <!-- TODO: Same as description above -->
   <meta property="og:description" content="We use a geographically diverse benchmark to conduct an analysis of 3D Foundation models and mitigate the disparities we find with an inference-time intervention.">
   <!-- TODO: Replace with your actual website URL -->
-  <meta property="og:url" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE">
+  <meta property="og:url" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE/">
   <!-- TODO: Create a 1200x630px preview image and update path -->
-  <meta property="og:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PAPER_TITLE - Research Preview">
-  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
-  <meta property="article:author" content="FIRST_AUTHOR_NAME">
+  <meta property="og:image" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE/static/images/teaser.png">
+  <meta property="og:image:alt" content="ArchWorld: a geographically diverse benchmark of 3D architectural landmarks">
+  <meta property="article:author" content="Nicky Kriplani">
   <meta property="article:section" content="Research">
-  <meta property="article:tag" content="KEYWORD1">
-  <meta property="article:tag" content="KEYWORD2">
+  <meta property="article:tag" content="3D Reconstruction">
+  <meta property="article:tag" content="Fairness">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <!-- TODO: Replace with your lab/institution Twitter handle -->
-  <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE">
-  <!-- TODO: Replace with first author's Twitter handle -->
-  <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE">
-  <!-- TODO: Same as paper title above -->
-  <meta name="twitter:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta name="twitter:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Same as social preview image above -->
-  <meta name="twitter:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta name="twitter:image:alt" content="PAPER_TITLE - Research Preview">
+  <meta name="twitter:title" content="Towards Reconstructing Geographically Diverse Architecture with 3D Foundation Models">
+  <meta name="twitter:description" content="We use a geographically diverse benchmark to conduct an analysis of 3D Foundation models and mitigate the disparities we find with an inference-time intervention.">
+  <meta name="twitter:image" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE/static/images/teaser.png">
+  <meta name="twitter:image:alt" content="ArchWorld: a geographically diverse benchmark of 3D architectural landmarks">
 
   <!-- Academic/Research Specific -->
-  <meta name="citation_title" content="PAPER_TITLE">
-  <meta name="citation_author" content="FIRST_AUTHOR_LAST, FIRST_AUTHOR_FIRST">
-  <meta name="citation_author" content="SECOND_AUTHOR_LAST, SECOND_AUTHOR_FIRST">
-  <meta name="citation_publication_date" content="2024">
-  <meta name="citation_conference_title" content="CONFERENCE_NAME">
-  <meta name="citation_pdf_url" content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf">
+  <meta name="citation_title" content="Towards Reconstructing Geographically Diverse Architecture with 3D Foundation Models">
+  <meta name="citation_author" content="Kriplani, Nicky">
+  <meta name="citation_author" content="Zhang, Yiwen">
+  <meta name="citation_author" content="Wang, Angelina">
+  <meta name="citation_author" content="Elor, Hadar">
+  <meta name="citation_publication_date" content="2026">
+  <!-- TODO: add citation_pdf_url once the paper is on arXiv -->
   
   <!-- Additional SEO -->
   <meta name="theme-color" content="#2563eb">
@@ -74,7 +65,7 @@
 
 
   <!-- TODO: Replace with your paper title and authors -->
-  <title>Towards Reconstructing Geographically-Diverse Architecture with 3D Foundation Models</title>
+  <title>Towards Reconstructing Geographically Diverse Architecture with 3D Foundation Models</title>
   
   <!-- Favicon and App Icons -->
   <!-- <link rel="icon" type="image/x-icon" href="static/images/favicon.ico"> -->
@@ -83,7 +74,14 @@
   <!-- Critical CSS - Load synchronously -->
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/index.css">
-  
+  <link rel="stylesheet" href="static/css/archworld.css">
+
+  <!-- KaTeX for equations -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}]});"></script>
+
   <!-- Non-critical CSS - Load asynchronously -->
   <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -108,73 +106,25 @@
   <script defer src="static/js/bulma-carousel.min.js"></script>
   <script defer src="static/js/bulma-slider.min.js"></script>
   <script defer src="static/js/index.js"></script>
+  <script defer src="static/js/region_table.js"></script>
   
   <!-- Structured Data for Academic Papers -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ScholarlyArticle",
-    "headline": "PAPER_TITLE",
-    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
+    "headline": "Towards Reconstructing Geographically Diverse Architecture with 3D Foundation Models",
+    "description": "We use a geographically diverse benchmark to conduct an analysis of 3D Foundation models and mitigate the disparities we find with an inference-time intervention.",
     "author": [
-      {
-        "@type": "Person",
-        "name": "FIRST_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      },
-      {
-        "@type": "Person",
-        "name": "SECOND_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      }
+      {"@type": "Person", "name": "Nicky Kriplani", "affiliation": {"@type": "Organization", "name": "Cornell Tech, Cornell University"}},
+      {"@type": "Person", "name": "Yiwen Zhang", "affiliation": {"@type": "Organization", "name": "Cornell Tech, Cornell University"}},
+      {"@type": "Person", "name": "Angelina Wang", "affiliation": {"@type": "Organization", "name": "Cornell Tech, Cornell University"}},
+      {"@type": "Person", "name": "Hadar Elor", "affiliation": {"@type": "Organization", "name": "Cornell Tech, Cornell University"}}
     ],
-    "datePublished": "2024-01-01",
-    "publisher": {
-      "@type": "Organization",
-      "name": "CONFERENCE_OR_JOURNAL_NAME"
-    },
-    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
-    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
-    "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
-    "abstract": "FULL_ABSTRACT_TEXT_HERE",
-    "citation": "BIBTEX_CITATION_HERE",
-    "isAccessibleForFree": true,
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "mainEntity": {
-      "@type": "WebPage",
-      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
-    },
-    "about": [
-      {
-        "@type": "Thing",
-        "name": "RESEARCH_AREA_1"
-      },
-      {
-        "@type": "Thing", 
-        "name": "RESEARCH_AREA_2"
-      }
-    ]
-  }
-  </script>
-  
-  <!-- Website/Organization Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "INSTITUTION_OR_LAB_NAME",
-    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
-    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
-    "sameAs": [
-      "https://twitter.com/YOUR_TWITTER_HANDLE",
-      "https://github.com/YOUR_GITHUB_USERNAME"
-    ]
+    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE/",
+    "image": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE/static/images/teaser.png",
+    "keywords": ["3D reconstruction", "3D foundation models", "geographic fairness", "benchmark", "computer vision"],
+    "isAccessibleForFree": true
   }
   </script>
 </head>
@@ -193,7 +143,7 @@
         <div class="columns is-centered">
           <div class="column has-text-centered">
             <!-- TODO: Replace with your paper title -->
-            <h1 class="title is-1 publication-title">Towards Reconstructing Geographically-Diverse Architecture with 3D Foundation Models</h1>
+            <h1 class="title is-1 publication-title">Towards Reconstructing Geographically Diverse Architecture with 3D Foundation Models</h1>
             <div class="is-size-5 publication-authors">
               <!-- TODO: Replace with your paper authors and their personal links -->
               <span class="author-block">
@@ -209,9 +159,9 @@
 
                   <div class="is-size-5 publication-authors">
                     <!-- TODO: Replace with your institution and conference/journal info -->
-                    <span class="author-block">Cornell University<br>Conference name and year (TODO)</span>
+                    <span class="author-block">Cornell Tech, Cornell University<br>NeurIPS 2026</span>
                     <!-- TODO: Remove this line if no equal contribution -->
-                    <span class="eql-cntrb"><small><br><sup>*</sup>Equal Contribution <sup>†</sup>Equal Contribution</small></span>
+                    <span class="eql-cntrb"><small><br><sup>*</sup>Equal Contribution <sup>†</sup>Equal Advising</small></span>
                   </div>
 
                   <div class="column has-text-centered">
@@ -259,6 +209,17 @@
                   <span>arXiv</span>
                 </a>
               </span>
+
+              <!-- Dataset -->
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/ArchWorld/ArchWorld" target="_blank"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <i class="fas fa-database"></i>
+                </span>
+                <span>Data</span>
+              </a>
+            </span>
             </div>
           </div>
         </div>
@@ -308,8 +269,7 @@
         <div class="content has-text-justified">
           <!-- TODO: Replace with your paper abstract -->
           <p>
-          Internet-scale photo collections of real-world landmarks have driven progress in 3D computer vision yet remain highly challenging for modern 3D foundation models (3DFMs) that estimate scene structure in a single feed-forward pass. In this work, we introduce <span style="font-variant: small-caps;">ArchWorld</span>, a benchmark of 3D architectural landmarks with high geographic coverage and rich metadata and use it to conduct a thorough error analysis of current 3DFMs to understand where they fall short and how they can be improved. We examine socially relevant disparities in model error and find that model performance seems to vary significantly by geographic region, but this trend is somewhat flattened when correcting for scene size. Instead, we find a disparity in performance between different kinds of religious buildings, narrowing this analysis to specific features that 3DFMs struggle with. Leveraging insights from model failings, we introduce an intervention scheme that improves 3DFM performance while simultaneously reducing religious disparities. Our code and data will be publicly available.          </p>
-        </div>
+            Internet-scale photo collections of real-world landmarks have driven progress in 3D computer vision yet remain highly challenging for modern 3D foundation models  (3DFMs) that estimate scene structure in a single feed-forward pass. In this work, we introduce <span class="sc">ArchWorld</span>, a benchmark of 3D architectural landmarks with high geographic coverage and rich metadata, and use it to conduct a thorough error analysis of current 3DFMs to understand where they fall short and how they can be improved. We find that scene extent is a confounding factor when comparing performance across regions, and we introduce an extent-normalized version of Chamfer Distance to resolve this issue. We examine socially relevant disparities in model error and find that model performance varies by geographic region, but that the trends do not closely match training data representation. Leveraging insights from model failings, we introduce an intervention scheme that improves 3DFM performance while simultaneously reducing geographic disparities.        </div>
       </div>
     </div>
   </div>
@@ -317,102 +277,176 @@
 <!-- End paper abstract -->
 
 
-<!-- Image carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- TODO: Replace with your research result images -->
-        <img src="static/images/carousel1.jpg" alt="First research result visualization" loading="lazy"/>
-        <!-- TODO: Replace with description of this result -->
-        <h2 class="subtitle has-text-centered">
-          First image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="Second research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="Third research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="Fourth research result visualization" loading="lazy"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
+<!-- At a glance -->
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <div class="aw-stats">
+      <div class="aw-stat"><span class="num">396</span><span class="lbl">landmark scenes</span></div>
+      <div class="aw-stat"><span class="num">8</span><span class="lbl">geographic regions</span></div>
+      <div class="aw-stat"><span class="num">64</span><span class="lbl">countries</span></div>
+      <div class="aw-stat"><span class="num">91K</span><span class="lbl">in-the-wild images</span></div>
+      <div class="aw-stat"><span class="num">232</span><span class="lbl">images per scene (avg.)</span></div>
     </div>
   </div>
-</div>
-</div>
+</section> -->
+<!-- End at a glance -->
+
+
+<!-- Benchmark -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 aw-section-title">The <span class="sc">ArchWorld</span> Benchmark</h2>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            We present the first error analysis aimed at studying 3DFM behavior across the socially relevant dimensions of geographic regions and architecture types (e.g., mosques, churches). To do this, we construct <span class="sc">ArchWorld</span>, a dataset of 3D scenes with meaningful coverage of architectural landmarks from eight regions: Africa, East Asia, Europe, Latin America, North America, South Asia, Southeast Asia, and West/Central Asia.
+          </p>
+        </div>
+
+        <!-- Scene carousel (all logic in static/js/scene_carousel.js, data in static/scenes/) -->
+        <link rel="stylesheet" href="static/css/scene_carousel.css">
+        <script type="importmap">
+          { "imports": {
+              "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+              "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/" } }
+        </script>
+        <script type="module" src="static/js/scene_carousel.js"></script>
+        <div id="scene-carousel" class="aw-scenes"></div>
+        <div class="content has-text-justified aw-scenes-text">
+          <p>
+            Above, we show a sample scene from each region in <span class="sc">ArchWorld</span>. Each scene combines an internet photo collection, a dense 3D reconstruction, and scene metdata. The metric scale factor, which converts the reconstruction to meters and gives the scene extent and the distances shown, was annotated manually for each scene. Additionally, we manually annotated scene-specific 3D masks that were used to refine each point map down to just the landmark itself.
+          </p>
+        </div>
+        <!-- End scene carousel -->
+      </div>
+    </div>
+  </div>
 </section>
-<!-- End image carousel -->
+<!-- End benchmark -->
 
 
+<!-- Disaggregated evaluation -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 aw-section-title">Where Do 3D Foundation Models Fall Short?</h2>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            We benchmark VGGT, Depth Anything 3, and π<sup>3</sup> on <span class="sc">ArchWorld</span>, measuring reconstruction error with Chamfer Distance in meters:
+          </p>
+          $$\mathrm{CD} = \frac{\mathrm{Accuracy} + \mathrm{Completeness}}{2} \times \mathrm{ScaleFactor}$$
+          <p>
+            Because landmark size varies across regions, we also report normalized CD, which divides CD by the scene's metric extent:
+          </p>
+          $$\widehat{\mathrm{CD}} = \frac{\mathrm{CD}}{\mathrm{Extent}}$$
+        </div>
+
+        <div class="box">
+          <div class="buttons has-addons is-centered aw-toggle" id="metric-toggle">
+            <button class="button is-small is-active" data-metric="cd">CD</button>
+            <button class="button is-small" data-metric="dcd">\(\widehat{\mathrm{CD}}\)</button>
+          </div>
+          <div class="aw-table-wrap">
+            <table class="table aw-table aw-results" id="region-table"></table>
+          </div>
+          <div class="aw-legend"><span>lower</span><span class="bar"></span><span>higher</span><span style="margin-left: 0.75rem;">(colored per model)</span></div>
+          <p class="aw-table-caption" id="region-caption"></p>
+        </div>
+
+        <figure class="aw-figure">
+          <img src="static/images/fig_qualitative_examples.png" alt="Qualitative results here" loading="lazy" onerror="this.parentElement.classList.add('is-missing')">
+          <div class="aw-placeholder"><strong><span class="sc">Qualitative Results here</span></strong><code>static/images/fig_qualitative_examples.png</code></div>
+        </figure>
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End disaggregated evaluation -->
 
 
-<!-- Youtube video -->
-<!-- <section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      Paper video.
-      <h2 class="title is-3">Video Presentation</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          
-          <div class="publication-video">
-           TODO: Replace with your YouTube video ID
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<!-- ArchAttend method -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 aw-section-title"><span class="sc">ArchAttend</span>: Intervention via Semantic Cross-View Attention Maps</h2>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <h3 class="title is-5">Semantic Cross-View Attention</h3>
+          <p>
+            We aggregate cross-view attention over semantic elements segmented with SAM 3 for both architectural \(\mathcal{E}_{\mathrm{arch}}\) (e.g., minarets, domes) and non-architectural elements \(\mathcal{E}_{\mathrm{non}}\) (e.g., sky, trees). In low-error scenes, we find that attention concentrates on the landmark; in high-error scenes, it leaks onto sky, water, and other distractors.
+          </p>
+        </div>
+
+        <h3 class="title is-5">A Two-Pass Intervention</h3>
+        <div class="aw-steps">
+          <div class="aw-step">
+            <span class="tag">Pass 1</span>
+            <h4 class="title is-6">Pick an anchor element (image)</h4>
+            </div>
+          <div class="aw-step">
+            <span class="tag">Pass 2</span>
+            <h4 class="title is-6">Boost attention to the anchor (image)</h4>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-  </section> -->
-<!-- End youtube video -->
 
-
-<!-- Video carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video1" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video2" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video3" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4" type="video/mp4">
-          </video>
-        </div>
+        <figure class="aw-figure">
+          <img src="static/images/fig5_archattend.png" alt="Overview of the ArchAttend two-pass intervention" loading="lazy" onerror="this.parentElement.classList.add('is-missing')">
+          <div class="aw-placeholder"><strong><span class="sc">ArchAttend</span> overview</strong><code>static/images/fig_archattend.png</code></div>
+        </figure>
       </div>
     </div>
   </div>
 </section>
-<!-- End video carousel -->
+<!-- End ArchAttend method -->
+
+
+<!-- Results -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 aw-section-title">Results</h2>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            Applied to DA3, <span class="sc">ArchAttend</span> lowers median \(\widehat{\mathrm{CD}}\) and narrows the gap between regions and architecture types.
+          </p>
+        </div>
+
+        <div class="aw-ba">
+          <div class="aw-ba-card">
+            <span class="k">All scenes</span>
+            <span class="vals"><span class="before">10.36</span><span class="arrow">→</span>8.92</span>
+            <span class="delta">−13.9%</span>
+          </div>
+          <div class="aw-ba-card">
+            <span class="k">Regional gap</span>
+            <span class="vals"><span class="before">11.26</span><span class="arrow">→</span>6.96</span>
+            <span class="delta">−38.2%</span>
+          </div>
+          <div class="aw-ba-card">
+            <span class="k">Architectural gap</span>
+            <span class="vals"><span class="before">13.75</span><span class="arrow">→</span>9.14</span>
+            <span class="delta">−33.5%</span>
+          </div>
+        </div>
+
+        <figure class="aw-figure">
+          <img src="static/images/fig_before_after.png" alt="Median normalized Chamfer distance per region and architecture type before and after ArchAttend" loading="lazy" onerror="this.parentElement.classList.add('is-missing')">
+          <div class="aw-placeholder"><strong>Before vs. after, by region and architecture type</strong><code>static/images/fig_before_after.png</code></div>
+        </figure>
+
+        <figure class="aw-figure">
+          <img src="static/images/fig_qualitative.png" alt="Qualitative reconstructions before and after ArchAttend for Toronto City Hall, Shore Temple, Chichen Itza, and Heian-jingu" loading="lazy" onerror="this.parentElement.classList.add('is-missing')">
+          <div class="aw-placeholder"><strong>Qualitative results</strong><code>static/images/fig_qualitative.png</code></div>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End results -->
 
 
 
@@ -446,16 +480,11 @@
           <span class="copy-text">Copy</span>
         </button>
       </div>
-      <pre id="bibtex-code"><code>@article{YourPaperKey2024,
-  title={Your Paper Title Here},
-  author={First Author and Second Author and Third Author},
-  journal={Conference/Journal Name},
-  year={2024},
-  url={https://your-domain.com/your-project-page}
-}</code></pre>
+      <pre id="bibtex-code"><code>ADD</code></pre>
     </div>
 </section>
 <!--End BibTex citation -->
+</main>
 
 
   <footer class="footer">
@@ -465,7 +494,7 @@
         <div class="content">
 
           <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            This website was adapted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
           </p>
 
         </div>

@@ -1,0 +1,296 @@
+/* ArchWorld project page additions (on top of the template's index.css) */
+
+:root {
+  --aw-accent: #9a3412;
+  --aw-accent-soft: #fff7ed;
+  --aw-ink: #1f2937;
+  --aw-muted: #6b7280;
+  --aw-border: #e5e7eb;
+  --aw-good: #15803d;
+  --aw-bad: #b91c1c;
+}
+
+.sc { font-variant: small-caps; }
+
+.aw-section-title {
+  text-align: center;
+  margin-bottom: 0.5rem !important;
+}
+.aw-section-lede {
+  text-align: center;
+  color: var(--aw-muted);
+  max-width: 720px;
+  margin: 0 auto 2rem;
+  font-size: 1.05rem;
+}
+
+/* ---------- At-a-glance stats ---------- */
+.aw-stats {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0 auto;
+  max-width: 860px;
+}
+.aw-stat {
+  text-align: center;
+  padding: 1rem 0.5rem;
+  border: 1px solid var(--aw-border);
+  border-radius: 10px;
+  background: #fff;
+}
+.aw-stat .num {
+  display: block;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--aw-accent);
+  line-height: 1.1;
+}
+.aw-stat .lbl {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--aw-muted);
+  margin-top: 0.25rem;
+}
+@media (max-width: 768px) {
+  .aw-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .aw-stat:last-child { grid-column: span 2; }
+}
+
+/* ---------- Figures (with placeholder when image is missing) ---------- */
+.aw-figure { margin: 1.5rem 0 2rem; }
+.aw-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+}
+.aw-figure figcaption {
+  margin-top: 0.6rem;
+  color: var(--aw-muted);
+  font-size: 0.9rem;
+  text-align: justify;
+}
+.aw-figure .aw-placeholder { display: none; }
+.aw-figure.is-missing img { display: none; }
+.aw-figure.is-missing .aw-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 220px;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  background: #f9fafb;
+  color: var(--aw-muted);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 1rem;
+}
+.aw-placeholder code { font-size: 0.85rem; }
+
+/* ---------- Tables ---------- */
+.aw-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--aw-border);
+  border-radius: 10px;
+  background: #fff;
+}
+.aw-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin: 0 !important;
+}
+.aw-table th,
+.aw-table td {
+  padding: 0.5rem 0.6rem !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  border-bottom: 1px solid var(--aw-border) !important;
+  white-space: nowrap;
+}
+.aw-table thead th {
+  background: #f9fafb;
+  font-weight: 600;
+  color: var(--aw-ink) !important;
+}
+.aw-table td:first-child,
+.aw-table th:first-child {
+  text-align: left !important;
+  font-weight: 600;
+  position: sticky;
+  left: 0;
+  background: #fff;
+}
+.aw-table thead th:first-child { background: #f9fafb; }
+.aw-table .group-row td {
+  background: #f3f4f6 !important;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--aw-muted);
+  text-align: left !important;
+}
+.aw-table .ours {
+  background: var(--aw-accent-soft) !important;
+  font-weight: 700;
+}
+.aw-table .yes { color: var(--aw-good); }
+.aw-table .no { color: #9ca3af; }
+.aw-table .unk { color: var(--aw-muted); }
+.aw-table-caption {
+  font-size: 0.85rem;
+  color: var(--aw-muted);
+  margin-top: 0.6rem;
+  text-align: justify;
+}
+
+/* Region results table */
+.aw-toggle { margin-bottom: 0.9rem; }
+.aw-toggle .button.is-active {
+  background: var(--aw-ink);
+  color: #fff;
+  border-color: var(--aw-ink);
+}
+.aw-results td.val { font-variant-numeric: tabular-nums; }
+.aw-results td.val.on-dark { color: #fff; }
+.aw-results td.val.on-dark .iqr { color: rgba(255, 255, 255, 0.8); }
+.aw-results td.val .iqr {
+  display: block;
+  font-size: 0.72rem;
+  color: rgba(0, 0, 0, 0.55);
+}
+.aw-results th .n {
+  display: block;
+  font-weight: 400;
+  font-size: 0.72rem;
+  color: var(--aw-muted);
+}
+.aw-results th .rank-up { color: var(--aw-good); }
+.aw-results th .rank-down { color: var(--aw-bad); }
+.aw-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--aw-muted);
+  margin-top: 0.75rem;
+}
+.aw-legend .bar {
+  width: 140px;
+  height: 10px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, rgb(59, 76, 192), rgb(141, 176, 254), rgb(221, 221, 221), rgb(244, 154, 123), rgb(180, 4, 38));
+}
+
+/* ---------- Key findings / callouts ---------- */
+.aw-callout {
+  border-left: 4px solid var(--aw-accent);
+  background: var(--aw-accent-soft);
+  padding: 0.9rem 1.1rem;
+  border-radius: 0 8px 8px 0;
+  margin: 1.25rem 0;
+}
+.aw-callout p:last-child { margin-bottom: 0; }
+
+.aw-arch-bars { margin: 1rem 0 1.5rem; }
+.aw-arch-bar {
+  display: grid;
+  grid-template-columns: 130px 1fr 48px;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.45rem;
+  font-size: 0.9rem;
+}
+.aw-arch-bar .track {
+  height: 14px;
+  background: #f3f4f6;
+  border-radius: 7px;
+  overflow: hidden;
+}
+.aw-arch-bar .fill {
+  height: 100%;
+  border-radius: 7px;
+  background: #fb923c;
+}
+.aw-arch-bar .v {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+/* ---------- Method steps ---------- */
+.aw-steps {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+.aw-step {
+  border: 1px solid var(--aw-border);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  background: #fff;
+}
+.aw-step .tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--aw-accent);
+  margin-bottom: 0.3rem;
+}
+.aw-step h4 { margin: 0 0 0.5rem !important; }
+.aw-step .katex-display { margin: 0.6rem 0; }
+@media (max-width: 768px) {
+  .aw-steps { grid-template-columns: 1fr; }
+}
+
+/* ---------- Before / after result cards ---------- */
+.aw-ba {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1.25rem 0 0.5rem;
+}
+.aw-ba-card {
+  border: 1px solid var(--aw-border);
+  border-radius: 10px;
+  padding: 0.9rem;
+  background: #fff;
+  text-align: center;
+}
+.aw-ba-card .k {
+  font-size: 0.8rem;
+  color: var(--aw-muted);
+  display: block;
+  margin-bottom: 0.35rem;
+}
+.aw-ba-card .vals {
+  font-size: 1.35rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.aw-ba-card .vals .before { color: #9ca3af; text-decoration: line-through; font-weight: 500; }
+.aw-ba-card .vals .arrow { color: #9ca3af; margin: 0 0.3rem; font-weight: 400; }
+.aw-ba-card .delta {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--aw-good);
+  font-weight: 600;
+  margin-top: 0.2rem;
+}
+@media (max-width: 768px) {
+  .aw-ba { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .aw-ba { grid-template-columns: 1fr; }
+}
+
+/* Region results: fixed, equal-width columns so switching metrics doesn't resize the table */
+.aw-results { table-layout: fixed; min-width: 640px; }
+.aw-results th:first-child, .aw-results td:first-child { width: 4.5rem; }
