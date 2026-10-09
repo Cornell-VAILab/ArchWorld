@@ -1,0 +1,168 @@
+/* Qualitative results: GT | aligned pi3 | error overlay videos, driven by the pi3 median scatter */
+
+/* One card holds the video, its caption, and the scatter that controls it. */
+.aw-qual {
+  --aw-active: var(--aw-ink);
+  margin: 1.5rem 0 2rem;
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid var(--aw-border);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+@media (min-width: 1024px) {
+  /* Use the container's full width instead of the 4/5 text column. */
+  .aw-qual { margin-left: -12.5%; margin-right: -12.5%; }
+}
+@media (max-width: 480px) {
+  .aw-qual { padding: 0.6rem; }
+}
+
+/* Video: three square panels side by side, labels overlaid */
+.aw-qual-video {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f7f7f8;
+  border: 2px solid var(--aw-active);
+  transition: border-color 0.25s;
+  aspect-ratio: 3 / 1;
+}
+.aw-qual-track { position: absolute; inset: 0; }
+.aw-qual-track video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.aw-qual-video .lbl,
+.aw-qual-video::before,
+.aw-qual-video::after,
+.aw-qual-cbar { z-index: 1; }
+.aw-qual-video .lbl {
+  position: absolute;
+  top: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--aw-ink);
+  pointer-events: none;
+}
+.aw-qual-video::before,
+.aw-qual-video::after {           /* dividers between the panels */
+  content: "";
+  position: absolute;
+  top: 8%;
+  bottom: 8%;
+  border-left: 1px solid var(--aw-border);
+}
+.aw-qual-video::before { left: calc(100% / 3); }
+.aw-qual-video::after { left: calc(200% / 3); }
+
+/* Error colorbar, along the bottom of the error panel */
+.aw-qual-cbar {
+  position: absolute;
+  left: calc(200% / 3 + 4%);
+  width: calc(100% / 3 - 8%);
+  bottom: 0.4rem;
+  padding: 0.2rem 0.4rem 0.1rem;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.85);
+  pointer-events: none;
+}
+.aw-qual-cbar .bar { height: 9px; border-radius: 3px; }
+.aw-qual-cbar .ticks {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--aw-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Caption: name, then region / type / group median, both centered */
+.aw-qual-meta { text-align: center; margin: 0.6rem 0 0.9rem; }
+.aw-qual-meta .name { font-weight: 600; color: var(--aw-ink); font-size: 1.1rem; }
+.aw-qual-meta .sub { font-size: 0.95rem; color: var(--aw-muted); }
+.aw-qual-meta .sub b { color: var(--aw-ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+.aw-qual-meta .sep { margin: 0 0.3rem; }
+.aw-mk { width: 15px; height: 15px; display: inline-block; vertical-align: -2px; margin-right: 0.3rem; }
+
+/* Median scatter (the carousel's navigation and progress) */
+.aw-qsc { max-width: 640px; margin: 0 auto; }
+.aw-qsc-hint { font-size: 0.85rem; color: var(--aw-muted); text-align: center; margin-bottom: 0.5rem; }
+.aw-qsc > svg { width: 100%; height: auto; display: block; overflow: visible; }
+.aw-qsc .row-bg { fill: #eef7f0; }
+.aw-qsc .grid { stroke: #fff; stroke-width: 1; }
+.aw-qsc .axis-text { font-size: 12px; fill: var(--aw-muted); }
+.aw-qsc .region-text { font-size: 14px; font-weight: 700; fill: var(--aw-ink); }
+.aw-qsc .pt { outline: none; }
+.aw-qsc .pt .hit { fill: transparent; }
+.aw-qsc .pt path {
+  stroke: #fff;
+  stroke-width: 1;
+  transition: transform 0.15s;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.aw-qsc .pt.is-active path,
+.aw-qsc .pt:hover path,
+.aw-qsc .pt:focus-visible path { transform: scale(1.12); stroke: var(--aw-ink); stroke-width: 1.5; }
+.aw-qsc .ring {
+  fill: none;
+  stroke-width: 3.5;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: rotate(-90deg);
+  pointer-events: none;
+}
+.aw-qsc .ring.is-counting { animation: aw-ring var(--aw-auto-ms, 7s) linear forwards; }
+.aw-qsc .ring.is-held { stroke-dashoffset: 100; }
+@keyframes aw-ring { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+
+.aw-qsc-xlabel { text-align: center; font-size: 0.9rem; color: var(--aw-muted); padding-left: 15%; }
+.aw-qsc-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  margin-top: 0.5rem;
+}
+.aw-qsc-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  font-size: 0.85rem;
+  color: var(--aw-muted);
+}
+.aw-qsc-legend .aw-mk { width: 14px; height: 14px; margin-right: 0.25rem; }
+.aw-qsc-ctrl { display: flex; align-items: center; gap: 0.9rem; flex-wrap: wrap; }
+.aw-speed { display: inline-flex; border: 1px solid var(--aw-border); border-radius: 6px; overflow: hidden; }
+.aw-speed button {
+  font: inherit;
+  font-size: 0.78rem;
+  padding: 0.15rem 0.5rem;
+  border: none;
+  background: #fff;
+  color: var(--aw-muted);
+  cursor: pointer;
+}
+.aw-speed button + button { border-left: 1px solid var(--aw-border); }
+.aw-speed button.is-active { background: var(--aw-ink); color: #fff; }
+.aw-qcar-auto {
+  font-size: 0.85rem;
+  color: var(--aw-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}

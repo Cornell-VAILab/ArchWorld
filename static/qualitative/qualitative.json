@@ -1,0 +1,170 @@
+{
+  "model": "pi3",
+  "metric": "CD_norm (CD / extent x 1000), base pass, 5-run ICP mean",
+  "error_colorbar": {
+    "lo": 0.144,
+    "hi": 11.355,
+    "low_rgb": [
+      60,
+      110,
+      255
+    ],
+    "high_rgb": [
+      230,
+      60,
+      50
+    ]
+  },
+  "region_order": [
+    "SE Asia",
+    "West/Central Asia",
+    "Latin America",
+    "Europe",
+    "South Asia",
+    "Africa",
+    "North America",
+    "East Asia"
+  ],
+  "points": [
+    {
+      "region": "Africa",
+      "type": "Mosque",
+      "n": 12,
+      "share": 32,
+      "median_cdnorm": 2.151,
+      "scene": "Muhammad_Ali_Mosque",
+      "scene_cdnorm": 2.416,
+      "scene_cd_m": 0.257,
+      "extent_m": 106.3,
+      "name": "Muhammad Ali Mosque",
+      "video": "static/qualitative/Muhammad_Ali_Mosque/spin.mp4",
+      "poster": "static/qualitative/Muhammad_Ali_Mosque/poster.jpg"
+    },
+    {
+      "region": "South Asia",
+      "type": "Mosque",
+      "n": 10,
+      "share": 19,
+      "median_cdnorm": 2.001,
+      "scene": "Qila-i-Kuhna_mosque",
+      "scene_cdnorm": 1.9,
+      "scene_cd_m": 0.129,
+      "extent_m": 67.8,
+      "name": "Qila-i-Kuhna mosque",
+      "video": "static/qualitative/Qila-i-Kuhna_mosque/spin.mp4",
+      "poster": "static/qualitative/Qila-i-Kuhna_mosque/poster.jpg"
+    },
+    {
+      "region": "West/Central Asia",
+      "type": "Mosque",
+      "n": 5,
+      "share": 10,
+      "median_cdnorm": 1.246,
+      "scene": "Nasir-ol-Molk_Mosque",
+      "scene_cdnorm": 1.246,
+      "scene_cd_m": 0.054,
+      "extent_m": 43.5,
+      "name": "Nasir-ol-Molk Mosque",
+      "video": "static/qualitative/Nasir-ol-Molk_Mosque/spin.mp4",
+      "poster": "static/qualitative/Nasir-ol-Molk_Mosque/poster.jpg"
+    },
+    {
+      "region": "Europe",
+      "type": "Church/Cathedral",
+      "n": 20,
+      "share": 39,
+      "median_cdnorm": 1.608,
+      "scene": "Saint_Andrew_church_in_Kraków",
+      "scene_cdnorm": 1.75,
+      "scene_cd_m": 0.098,
+      "extent_m": 55.9,
+      "name": "Saint Andrew church in Kraków",
+      "video": "static/qualitative/Saint_Andrew_church_in_Krakow/spin.mp4",
+      "poster": "static/qualitative/Saint_Andrew_church_in_Krakow/poster.jpg"
+    },
+    {
+      "region": "Latin America",
+      "type": "Church/Cathedral",
+      "n": 28,
+      "share": 56,
+      "median_cdnorm": 1.391,
+      "scene": "Santa_Prisca_Church_(Taxco_de_Alarcón)",
+      "scene_cdnorm": 1.418,
+      "scene_cd_m": 0.062,
+      "extent_m": 43.8,
+      "name": "Santa Prisca Church (Taxco de Alarcón)",
+      "video": "static/qualitative/Santa_Prisca_Church__Taxco_de_Alarcon_/spin.mp4",
+      "poster": "static/qualitative/Santa_Prisca_Church__Taxco_de_Alarcon_/poster.jpg"
+    },
+    {
+      "region": "North America",
+      "type": "Church/Cathedral",
+      "n": 8,
+      "share": 18,
+      "median_cdnorm": 2.805,
+      "scene": "Cathedral-Basilica_of_Mary,_Queen_of_the_World",
+      "scene_cdnorm": 3.674,
+      "scene_cd_m": 0.609,
+      "extent_m": 165.7,
+      "name": "Cathedral-Basilica of Mary, Queen of the World",
+      "video": "static/qualitative/Cathedral-Basilica_of_Mary__Queen_of_the_World/spin.mp4",
+      "poster": "static/qualitative/Cathedral-Basilica_of_Mary__Queen_of_the_World/poster.jpg"
+    },
+    {
+      "region": "SE Asia",
+      "type": "Church/Cathedral",
+      "n": 34,
+      "share": 68,
+      "median_cdnorm": 1.188,
+      "scene": "Diocesan_Shrine_and_Parish_of_the_Immaculate_Conception_of_Naic",
+      "scene_cdnorm": 1.174,
+      "scene_cd_m": 0.051,
+      "extent_m": 43.8,
+      "name": "Diocesan Shrine and Parish of the Immaculate Conception of Naic",
+      "video": "static/qualitative/Diocesan_Shrine_and_Parish_of_the_Immaculate_Conception_of_Naic/spin.mp4",
+      "poster": "static/qualitative/Diocesan_Shrine_and_Parish_of_the_Immaculate_Conception_of_Naic/poster.jpg"
+    },
+    {
+      "region": "West/Central Asia",
+      "type": "Church/Cathedral",
+      "n": 19,
+      "share": 37,
+      "median_cdnorm": 1.512,
+      "scene": "Church_of_the_Nativity_(Bethlehem)",
+      "scene_cdnorm": 1.512,
+      "scene_cd_m": 0.134,
+      "extent_m": 88.6,
+      "name": "Church of the Nativity (Bethlehem)",
+      "video": "static/qualitative/Church_of_the_Nativity__Bethlehem_/spin.mp4",
+      "poster": "static/qualitative/Church_of_the_Nativity__Bethlehem_/poster.jpg"
+    },
+    {
+      "region": "East Asia",
+      "type": "Temple/Shrine",
+      "n": 13,
+      "share": 30,
+      "median_cdnorm": 2.149,
+      "scene": "Kanteibyou_(Yokohama)",
+      "scene_cdnorm": 2.149,
+      "scene_cd_m": 0.108,
+      "extent_m": 50.2,
+      "name": "Kanteibyou (Yokohama)",
+      "video": "static/qualitative/Kanteibyou__Yokohama_/spin.mp4",
+      "poster": "static/qualitative/Kanteibyou__Yokohama_/poster.jpg"
+    },
+    {
+      "region": "South Asia",
+      "type": "Temple/Shrine",
+      "n": 15,
+      "share": 28,
+      "median_cdnorm": 2.392,
+      "scene": "Mahabodhi_Temple",
+      "scene_cdnorm": 2.392,
+      "scene_cd_m": 0.169,
+      "extent_m": 70.5,
+      "name": "Mahabodhi Temple",
+      "video": "static/qualitative/Mahabodhi_Temple/spin.mp4",
+      "poster": "static/qualitative/Mahabodhi_Temple/poster.jpg"
+    }
+  ]
+}

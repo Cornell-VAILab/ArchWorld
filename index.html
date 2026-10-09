@@ -341,6 +341,9 @@
             Because landmark size varies across regions, we also report normalized CD, which divides CD by the scene's metric extent:
           </p>
           $$\widehat{\mathrm{CD}} = \frac{\mathrm{CD}}{\mathrm{Extent}}$$
+          <p>
+            The table below reports each model's median CD and \(\widehat{\mathrm{CD}}\) by geographic region, revealing clear regional disparities that persist even for π<sup>3</sup>, the best-performing model.
+          </p>
         </div>
 
         <div class="box">
@@ -355,10 +358,21 @@
           <p class="aw-table-caption" id="region-caption"></p>
         </div>
 
-        <figure class="aw-figure">
-          <img src="static/images/fig_qualitative_examples.png" alt="Qualitative results here" loading="lazy" onerror="this.parentElement.classList.add('is-missing')">
-          <div class="aw-placeholder"><strong><span class="sc">Qualitative Results here</span></strong><code>static/images/fig_qualitative_examples.png</code></div>
-        </figure>
+        <!-- Qualitative results (logic in static/js/qualitative.js, data in static/qualitative/) -->
+        <link rel="stylesheet" href="static/css/qualitative.css">
+        <script defer src="static/js/qualitative.js"></script>
+        <div class="content has-text-justified">
+          <p>
+            Regional disparities persist even within the same architecture type. Below, we show π<sup>3</sup>'s median \(\widehat{\mathrm{CD}}\) for each region and type of religious building (churches, mosques, and temples), along with an example scene for each median.
+          </p>
+        </div>
+        <div id="qual-figure" class="aw-qual"></div>
+        <div class="content has-text-justified">
+          <p>
+            π<sup>3</sup> struggles to reconstruct minarets, as in the Muhammad Ali Mosque, while the dense urban surroundings of Mary, Queen of the World Cathedral introduce spurious geometry. These examples suggest that geographic disparities also reflect differences in architectural characteristics and scene complexity.
+          </p>
+        </div>
+        <!-- End qualitative results -->
 
       </div>
     </div>
