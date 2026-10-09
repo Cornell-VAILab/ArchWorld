@@ -123,7 +123,7 @@
   pointer-events: none;
 }
 .aw-qsc .ring.is-counting { animation: aw-ring var(--aw-auto-ms, 7s) linear forwards; }
-.aw-qsc .ring.is-held { stroke-dashoffset: 100; }
+.aw-qsc .ring:not(.is-counting) { visibility: hidden; }   /* only drawn while counting down */
 @keyframes aw-ring { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
 
 .aw-qsc-xlabel { text-align: center; font-size: 0.9rem; color: var(--aw-muted); padding-left: 15%; }

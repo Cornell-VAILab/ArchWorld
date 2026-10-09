@@ -186,7 +186,6 @@
     function schedule(done = 0) {
       clearTimeout(timer);
       ring.classList.remove('is-counting');
-      ring.classList.toggle('is-held', held);   // empty while a hovered scene is held
       ring.style.animationDelay = '';
       void ring.getBBox();
       if (!(auto && visible && !held)) return;
