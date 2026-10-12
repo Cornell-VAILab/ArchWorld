@@ -107,6 +107,7 @@
   <script defer src="static/js/bulma-slider.min.js"></script>
   <script defer src="static/js/index.js"></script>
   <script defer src="static/js/region_table.js"></script>
+  <script defer src="static/js/teaser_video.js"></script>
   
   <!-- Structured Data for Academic Papers -->
   <script type="application/ld+json">
@@ -249,9 +250,12 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <!-- TODO: Replace with your teaser video -->    
-           <!-- TODO: Add your video file path here -->
-      <img src="static/images/teaser.png" alt="Teaser image for ArchWorld paper" style="width:100%">
+      <video id="teaser-video" poster="static/images/teaser_poster.jpg" autoplay muted loop playsinline
+             disablepictureinpicture disableremoteplayback preload="auto" style="width:100%; display:block"
+             aria-label="ArchWorld teaser: a tour of landmarks on the world map, comparing ground truth with π³ predictions">
+        <source src="static/videos/teaser_tour_loop.mp4" type="video/mp4">
+        <img src="static/images/teaser.png" alt="Teaser image for ArchWorld paper" style="width:100%">
+      </video>
       <!-- TODO: Replace with your video description -->
       <h2 class="subtitle has-text-centered">
         We present <span style="font-variant: small-caps;">ArchWorld</span>, a geographically diverse benchmark of 396 in-the-wild 3D landmarks across eight geographic regions with rich metadata and metric-scale dense ground-truth reconstructions, enabling evaluation of 3D foundation models disaggregated by region and architecture type.</h2>
