@@ -107,6 +107,8 @@
   <script defer src="static/js/bulma-slider.min.js"></script>
   <script defer src="static/js/index.js"></script>
   <script defer src="static/js/region_table.js"></script>
+  <script defer src="static/js/archattend_pipeline.js"></script>
+  <script defer src="static/js/before_after_chart.js"></script>
   <script defer src="static/js/teaser_video.js"></script>
   
   <!-- Structured Data for Academic Papers -->
@@ -399,21 +401,18 @@
         </div>
 
         <h3 class="title is-5">A Two-Pass Intervention</h3>
-        <div class="aw-steps">
-          <div class="aw-step">
-            <span class="tag">Pass 1</span>
-            <h4 class="title is-6">Pick an anchor element (image)</h4>
-            </div>
-          <div class="aw-step">
-            <span class="tag">Pass 2</span>
-            <h4 class="title is-6">Boost attention to the anchor (image)</h4>
+        <div class="aw-pipe" id="archattend-pipeline" tabindex="0">
+          <div class="aw-pipe-stage"></div>
+          <div class="aw-pipe-caption">
+            <div class="aw-pipe-title"></div>
+            <div class="aw-pipe-lede"></div>
+          </div>
+          <div class="aw-pipe-nav">
+            <button class="button is-small aw-pipe-prev" type="button">&larr; Back</button>
+            <div class="aw-pipe-dots"></div>
+            <button class="button is-small aw-pipe-next" type="button">Next &rarr;</button>
           </div>
         </div>
-
-        <figure class="aw-figure">
-          <img src="static/images/fig5_archattend.png" alt="Overview of the ArchAttend two-pass intervention" loading="lazy" onerror="this.parentElement.classList.add('is-missing')">
-          <div class="aw-placeholder"><strong><span class="sc">ArchAttend</span> overview</strong><code>static/images/fig_archattend.png</code></div>
-        </figure>
       </div>
     </div>
   </div>
@@ -451,10 +450,20 @@
           </div>
         </div>
 
-        <figure class="aw-figure">
-          <img src="static/images/fig_before_after.png" alt="Median normalized Chamfer distance per region and architecture type before and after ArchAttend" loading="lazy" onerror="this.parentElement.classList.add('is-missing')">
-          <div class="aw-placeholder"><strong>Before vs. after, by region and architecture type</strong><code>static/images/fig_before_after.png</code></div>
-        </figure>
+        <div class="buttons has-addons is-centered aw-toggle" id="ba-toggle">
+          <button class="button is-small is-active" type="button" data-bucket="region">By region</button>
+          <button class="button is-small" type="button" data-bucket="arch">By architecture type</button>
+        </div>
+        <div class="aw-ba-legend">
+          <span><span class="swatch" style="background:#ff6060"></span>Before</span>
+          <span><span class="swatch" style="background:#ffa726"></span>After <span class="sc">ArchAttend</span></span>
+          <span>Buckets ordered hardest to easiest by the baseline.</span>
+        </div>
+        <div class="aw-ba-chart">
+          <div id="before-after-chart"></div>
+          <div class="aw-ba-tip"></div>
+        </div>
+        <p class="aw-ba-summary" id="ba-summary"></p>
 
         <figure class="aw-figure">
           <img src="static/images/fig_qualitative.png" alt="Qualitative reconstructions before and after ArchAttend for Toronto City Hall, Shore Temple, Chichen Itza, and Heian-jingu" loading="lazy" onerror="this.parentElement.classList.add('is-missing')">
