@@ -1,0 +1,35 @@
+# Evaluation and ArchAttend.
+#
+# The three models are installed by setup/install.sh with --no-deps, because
+# their own requirements pin conflicting torch and numpy versions. That means
+# their real dependencies have to be listed here instead; the four under
+# "needed by the models" were found by importing each pass in a clean
+# environment, not by reading the models' metadata, which over-declares.
+#
+# Two pins are not cosmetic:
+#   numpy<2.3   plyfile and others pull numpy 2.5, which breaks opencv-python
+#   moviepy<2   2.x removed moviepy.editor, which the GLB export path imports
+# VGGT and DA3 declare numpy<2; 2.2.6 is what the published runs used and what
+# this code is tested against, so pip will warn about that and the warning is
+# expected.
+
+numpy>=1.24,<2.3
+moviepy<2
+opencv-python>=4.8
+pillow>=10.0
+scipy>=1.10
+pandas>=2.0
+matplotlib>=3.7
+trimesh>=4.0
+plyfile>=1.0
+open3d>=0.17          # point-to-point ICP refinement during alignment
+onnxruntime>=1.16     # sky segmentation for DA3 and pi3
+rootutils>=1.0        # locates the repository root via .project-root
+huggingface_hub>=0.30
+tqdm
+
+# needed by the models, which are installed with --no-deps
+einops
+omegaconf
+addict
+pycolmap

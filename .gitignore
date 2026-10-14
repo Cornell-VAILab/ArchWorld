@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.archattend_work/
+results/
+intervention/assets/skyseg.onnx
+skyseg.onnx
