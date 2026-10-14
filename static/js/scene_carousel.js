@@ -3,6 +3,13 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
+
+// The point-cloud GLBs are EXT_meshopt_compression + KHR_mesh_quantization.
+// MeshoptDecoder resolves through the same "three/addons/" importmap entry as
+// GLTFLoader, so the decoder can never drift from the three.js build.
+// KHR_mesh_quantization needs no decoder - GLTFLoader handles it natively.
+const GLTF_LOADER = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
 
 const ROOT_ID = 'scene-carousel';
 const DATA_URL = 'static/scenes/scenes.json';
@@ -146,7 +153,7 @@ class PointViewer {
 
   _load(meta, url, onPct) {
     return new Promise((resolve, reject) => {
-      new GLTFLoader().load(url, (gltf) => {
+      GLTF_LOADER.load(url, (gltf) => {
         let pts = null;
         gltf.scene.traverse((o) => { if (o.isPoints && !pts) pts = o; });
         if (!pts) return reject(new Error('No point primitive in ' + url));
@@ -155,8 +162,8 @@ class PointViewer {
           vertexColors: !!pts.geometry.getAttribute('color'),
           sizeAttenuation: true,
         });
-        // Keep the node's transform so world coordinates match the file;
-        // measurements are converted back to local units in _pick().
+        // Keep the node's transform: KHR_mesh_quantization carries the
+        // dequantisation scale/offset there, so only world space is in file units.
         gltf.scene.updateMatrixWorld(true);
         const group = new THREE.Group();
         group.add(gltf.scene);
@@ -222,9 +229,10 @@ class PointViewer {
       if (h.distanceToRay < best.distanceToRay) best = h;
     }
     const pos = pts.geometry.getAttribute('position');
+    // World space == the file's own coordinate units (the source clouds have an
+    // identity node transform; quantisation only adds the dequantisation TRS).
     const world = new THREE.Vector3().fromBufferAttribute(pos, best.index).applyMatrix4(pts.matrixWorld);
-    const local = new THREE.Vector3().fromBufferAttribute(pos, best.index);
-    return { world, local };
+    return { world };
   }
 
   _marker(p) {
@@ -251,7 +259,7 @@ class PointViewer {
     );
     line.renderOrder = 9;
     this.scene.add(line);
-    const meters = a.local.distanceTo(b.local) * this.current.meta.scale;
+    const meters = a.world.distanceTo(b.world) * this.current.meta.scale;
     const label = el('div', 'aw-measure-label', `${meters.toFixed(2)} m`);
     this.overlay.appendChild(label);
     this.measurements.push({
@@ -297,10 +305,12 @@ class PointViewer {
       min = new THREE.Vector3(...info.bbox.min);
       max = new THREE.Vector3(...info.bbox.max);
     } else {
-      const geo = points.userData.points.geometry;
+      const pts = points.userData.points;
+      const geo = pts.geometry;
       geo.computeBoundingBox();
-      min = geo.boundingBox.min.clone();
-      max = geo.boundingBox.max.clone();
+      const bb = geo.boundingBox.clone().applyMatrix4(pts.matrixWorld);
+      min = bb.min.clone();
+      max = bb.max.clone();
     }
     const box = new THREE.Box3(min, max);
     const edges = new THREE.Box3Helper(box, 0x2563eb);
@@ -370,8 +380,8 @@ function init(root, scenes) {
 
   // Region slider: one clickable segment per region, with a sliding highlight.
   const nav = el('div', 'aw-region-nav');
-  const prev = el('button', 'button is-small is-rounded aw-region-arrow', '<span class="icon"><i class="fas fa-chevron-left"></i></span>');
-  const next = el('button', 'button is-small is-rounded aw-region-arrow', '<span class="icon"><i class="fas fa-chevron-right"></i></span>');
+  const prev = el('button', 'button is-small is-rounded aw-region-arrow', '<span class="icon"><svg class="aw-ico" aria-hidden="true" focusable="false"><use href="#i-chevron-left"/></svg></span>');
+  const next = el('button', 'button is-small is-rounded aw-region-arrow', '<span class="icon"><svg class="aw-ico" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg></span>');
   prev.setAttribute('aria-label', 'Previous region');
   next.setAttribute('aria-label', 'Next region');
   const track = el('div', 'aw-region-track');
@@ -403,10 +413,10 @@ function init(root, scenes) {
     '<span class="aw-switch-track"><span class="aw-switch-thumb"></span></span>' +
     '<span class="aw-switch-label" data-side="landmark">Landmark only</span>');
   const versionInput = versionGroup.querySelector('input');
-  const measureBtn = el('button', 'button is-small', '<span class="icon"><i class="fas fa-ruler"></i></span><span>Measure</span>');
+  const measureBtn = el('button', 'button is-small', '<span class="icon"><svg class="aw-ico" aria-hidden="true" focusable="false"><use href="#i-ruler"/></svg></span><span>Measure</span>');
   const clearBtn = el('button', 'button is-small', '<span>Clear</span>');
-  const resetBtn = el('button', 'button is-small', '<span class="icon"><i class="fas fa-undo"></i></span><span>Reset view</span>');
-  const boxBtn = el('button', 'button is-small aw-box-btn', '<span class="icon"><i class="fas fa-cube"></i></span><span>Extent box</span>');
+  const resetBtn = el('button', 'button is-small', '<span class="icon"><svg class="aw-ico" aria-hidden="true" focusable="false"><use href="#i-undo"/></svg></span><span>Reset view</span>');
+  const boxBtn = el('button', 'button is-small aw-box-btn', '<span class="icon"><svg class="aw-ico" aria-hidden="true" focusable="false"><use href="#i-cube"/></svg></span><span>Extent box</span>');
   toolbar.append(versionGroup, boxBtn, measureBtn, clearBtn, resetBtn);
   const hint = el('p', 'aw-viewer-hint',
     '<strong>Shift+click</strong> two points to measure the distance between them in meters. On touch screens, turn on <em>Measure</em> and tap.');

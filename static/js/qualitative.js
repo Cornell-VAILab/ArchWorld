@@ -230,7 +230,16 @@
     if (!root) return;
     fetch('static/qualitative/qualitative.json')
       .then((r) => r.json())
-      .then((data) => build(root, data))
+      // build() immediately sets src+preload on the first clip, so building
+      // eagerly pulls a multi-megabyte video for a figure far below the fold.
+      .then((data) => {
+        const io = new IntersectionObserver((entries) => {
+          if (!entries.some((e) => e.isIntersecting)) return;
+          io.disconnect();
+          build(root, data);
+        }, { rootMargin: '400px' });
+        io.observe(root);
+      })
       .catch((e) => console.error('qualitative results:', e));
   }
 

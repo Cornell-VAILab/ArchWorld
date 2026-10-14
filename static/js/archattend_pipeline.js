@@ -13,6 +13,11 @@
   const TOKENS = ['#0047ab', '#a52a2a', '#ffb90f', '#e9967a', '#48d1cc', '#2e8b57'];
   const ANCHOR = '#ffb90f';
   const TONE = { a: '#7a0000', b: '#28448d', c: '#3b6c1e', d: '#5c4080' };
+  // x, y, w, h as fractions of the reconstruction tile
+  const CALLOUT = {
+    before: [0.2055, 0.2344, 0.3625, 0.3668],
+    after: [0.2002, 0.2243, 0.3686, 0.3604],
+  };
   const RULE = '#e5e7eb', INK = '#1f2937', MUTED = '#6b7280', FAINT = '#9ca3af';
 
   const W = 1000, H = 724, TILE = 100;
@@ -57,7 +62,7 @@
   function tile(add, s, x, y, file, alt) {
     add(s, 'image', {
       x, y, width: TILE, height: TILE, href: IMG + file,
-      preserveAspectRatio: 'xMidYMid slice', 'aria-label': alt,
+      preserveAspectRatio: 'xMidYMid meet', 'aria-label': alt,
     });
     add(s, 'rect', { x: x + 0.5, y: y + 0.5, width: TILE - 1, height: TILE - 1,
       rx: 4, fill: 'none', stroke: RULE });
@@ -202,13 +207,19 @@
         tile(add, s, x, 590, f, `${COLS[i]} ${k} the intervention`);
         lab(add, s, x + TILE / 2, 708, COLS[i], 'middle');
       });
+      const [cx, cy, cw, ch] = CALLOUT[k];
+      add(s, 'rect', { x: x0 + cx * TILE, y: 590 + cy * TILE,
+        width: cw * TILE, height: ch * TILE, rx: 2,
+        fill: 'none', stroke: tone, 'stroke-width': 1.6 });
+      add(s, 'rect', { x: x0 + 110 + 0.5, y: 590.5, width: TILE - 1, height: TILE - 1,
+        rx: 4, fill: 'none', stroke: tone, 'stroke-width': 2 });
     });
     return svg;
   }
 
   // ------------------------------------------------------------------- wire
   // Per-stage dwell when playing, in ms, hand-tuned to how much each stage adds.
-  const DWELL = [2400, 2000, 2600, 3200, 2400, 3400, 2800, 3000];
+  const DWELL = [1500, 1200, 1500, 1900, 1400, 1900, 1600, 1800];
 
   function init() {
     const root = document.getElementById('archattend-pipeline');
@@ -310,5 +321,19 @@
 
     render();
   }
-  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', init) : init();
+  // SVG <image> has no loading="lazy", so building the figure eagerly would
+  // pull all twelve tiles on first paint for a figure well below the fold.
+  // The container already reserves its space through --figure-ratio.
+  function boot() {
+    const root = document.getElementById('archattend-pipeline');
+    if (!root) return;
+    if (!('IntersectionObserver' in window)) { init(); return; }
+    const io = new IntersectionObserver((entries) => {
+      if (!entries.some((e) => e.isIntersecting)) return;
+      io.disconnect();
+      init();
+    }, { rootMargin: '400px' });
+    io.observe(root);
+  }
+  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', boot) : boot();
 })();

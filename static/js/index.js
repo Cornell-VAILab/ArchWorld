@@ -119,24 +119,7 @@ function setupVideoCarouselAutoplay() {
     });
 }
 
-$(document).ready(function() {
-    // Check for click events on the navbar burger icon
-
-    var options = {
-		slidesToScroll: 1,
-		slidesToShow: 1,
-		loop: true,
-		infinite: true,
-		autoplay: true,
-		autoplaySpeed: 5000,
-    }
-
-	// Initialize all div with carousel class
-    var carousels = bulmaCarousel.attach('.carousel', options);
-	
-    bulmaSlider.attach();
-    
-    // Setup video autoplay for carousel
-    setupVideoCarouselAutoplay();
-
-})
+// The Bulma carousel and slider were the template's; this page has no .carousel
+// or .slider left, so attaching them was a no-op that cost jQuery and two
+// libraries. Only the video autoplay observer still has work to do.
+document.addEventListener('DOMContentLoaded', setupVideoCarouselAutoplay);
