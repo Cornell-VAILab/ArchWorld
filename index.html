@@ -401,20 +401,29 @@
         </div>
 
         <h3 class="title is-5">A Two-Pass Intervention</h3>
-        <div class="aw-pipe" id="archattend-pipeline" tabindex="0">
-          <div class="aw-pipe-stage"></div>
-          <div class="aw-pipe-caption">
-            <div class="aw-pipe-title"></div>
-            <div class="aw-pipe-lede"></div>
-          </div>
-          <div class="aw-pipe-nav">
-            <button class="button is-small aw-pipe-prev" type="button">&larr; Back</button>
-            <div class="aw-pipe-dots"></div>
-            <button class="button is-small aw-pipe-next" type="button">Next &rarr;</button>
-          </div>
-        </div>
       </div>
     </div>
+
+    <!-- The figure spans the full container: at text-column width its labels
+         would shrink below legibility. -->
+    <figure class="aw-pipe" id="archattend-pipeline">
+      <svg class="aw-pipe-icons" aria-hidden="true" focusable="false"><defs>
+        <symbol id="aw-i-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7Z"/></symbol>
+        <symbol id="aw-i-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></symbol>
+        <symbol id="aw-i-replay" viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 .8 7M4 4v6h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      </defs></svg>
+      <div class="aw-pipe-controls">
+        <button class="aw-pipe-play" type="button" aria-label="Play the pipeline">
+          <svg class="aw-pipe-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#aw-i-play"/></svg><span>Play</span>
+        </button>
+        <div class="aw-pipe-steps" role="group" aria-label="Pipeline stages"></div>
+        <button class="aw-pipe-reset" type="button" title="Show the complete figure" aria-label="Show the complete figure">
+          <svg class="aw-pipe-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#aw-i-replay"/></svg>
+        </button>
+      </div>
+      <div class="aw-pipe-figure" style="--figure-ratio:1000/724"></div>
+      <figcaption class="aw-pipe-caption">The two passes of <span class="sc">ArchAttend</span>: pick the architectural element that already draws the most cross-view attention, then steer every attention block toward it.</figcaption>
+    </figure>
   </div>
 </section>
 <!-- End ArchAttend method -->
