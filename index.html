@@ -273,10 +273,15 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video id="teaser-video" poster="static/images/teaser_poster.webp" autoplay muted loop playsinline
-             disablepictureinpicture disableremoteplayback preload="auto" style="width:100%; display:block"
+      <!-- Full resolution, and large because of it. The source is attached by
+           teaser_video.js once the rest of the page has loaded, so it does not
+           compete for bandwidth with the stylesheet, fonts and scripts. Until
+           then the poster — the teaser figure itself — is what is on screen,
+           which is also what a visitor without JavaScript keeps. -->
+      <video id="teaser-video" poster="static/images/teaser_poster.webp" muted loop playsinline
+             disablepictureinpicture disableremoteplayback preload="none" style="width:100%; display:block"
+             data-src="static/videos/teaser_tour_loop.mp4?v=4"
              aria-label="ArchWorld teaser: a tour of landmarks across the world map, showing each one's metric-scale ground-truth reconstruction and metadata">
-        <source src="static/videos/teaser_tour_loop.mp4?v=4" type="video/mp4">
       </video>
       <!-- TODO: Replace with your video description -->
       <h2 class="subtitle has-text-centered">
