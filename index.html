@@ -74,7 +74,7 @@
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/index.css">
   <link rel="stylesheet" href="static/css/archworld.css">
-  <link rel="stylesheet" href="static/css/archattend.css?v=0732d34bf777">
+  <link rel="stylesheet" href="static/css/archattend.css?v=9304d345f1c6">
 
   <!-- KaTeX typesets a handful of formulas. Loaded with defer it sat on the
        DOMContentLoaded critical path, where one slow CDN response stalls the
@@ -419,18 +419,10 @@
           <p>To support this investigation, we annotate each scene with pixel-level masks corresponding to two element sets: a set of architectural elements \(\mathcal{E}_{\mathrm{arch}}\) and a set of non-architectural elements \(\mathcal{E}_{\mathrm{non}}\). We denote the full element set \(\mathcal{E} = \mathcal{E}_{\mathrm{arch}} \cup \mathcal{E}_{\mathrm{non}}\) and use SAM 3 to segment elements across all images of each scene. We visualize Semantic Cross-View Attention (SCVA) by aggregating attention from each query patch \(i\) to key patches that share its semantic element.</p>
         </div>
         <!-- Eq. attention-score: the per-patch quantity visualized in the maps below. -->
-        <div class="aw-scva-explanation has-text-centered">
-          <div id="aw-scva-visualization" class="aw-scva-equation">
-            <h3>Visualizing SCVA</h3>
-            <p class="aw-scva-formula-intro">For a patch \(i\) belonging to element \(e\), its SCVA score is</p>
-            <div class="aw-scva-formula">$$s_i = \sum_{j \in \mathcal{P}_e} \mathbf{A}^{l}[i,j]$$</div>
-            <p class="aw-scva-notation">
-              <span class="aw-scva-definition">\(\mathcal{P}_e\) is the set of patches across all input views covered by the segmentation mask of \(e \in \mathcal{E}\).</span>
-              <span class="aw-scva-definition">\(\mathbf{A}^{l}\) is the attention matrix of the \(l\)-th global attention layer averaged over heads.</span>
-            </p>
-          </div>
-          <!-- Original explanation: overleaf_paper/figures/motivation.tex. -->
-          <p class="aw-scva-map-note has-text-centered">We visualize the SCVA score, the amount of attention each patch places on its own element in the other views (warm = high, cold = low).</p>
+        <div id="aw-scva-visualization" class="content has-text-justified aw-method-equation">
+          <div class="aw-scva-formula">$$s_i = \sum_{j \in \mathcal{P}_e} \mathbf{A}^{l}[i,j]$$</div>
+          <!-- Definitions and visualization: 5-method.tex and figures/motivation.tex. -->
+          <p>Here, \(\mathcal{P}_e\) is the set of patches across all input views covered by the segmentation mask of \(e \in \mathcal{E}\), and \(\mathbf{A}^{l}\) is the attention matrix of the \(l\)-th global attention layer averaged over heads. We visualize the SCVA score, the amount of attention each patch places on its own element in the other views (warm = high, cold = low).</p>
         </div>
       </div>
     </div>
@@ -481,14 +473,12 @@
           <p class="aw-scva-insight">SCVA maps reveal a striking pattern: in scenes with low reconstruction error, cross-view attention concentrates on landmark-centric patches, while in high-error scenes it leaks onto semantically irrelevant regions (e.g., sky, water) that contribute little signal for reconstruction. To improve reconstruction in challenging scenes, we aim to redirect attention from such distractors toward semantically important architectural patches.</p>
           <!-- Paper narrative: overleaf_paper/5-method.tex, Architecture-Centric Intervention. -->
           <p class="awcr-intro">We propose <span class="sc">ArchAttend</span>, a 2-pass method that first identifies the main architectural element on which the model should establish correspondences, then increases attention to that element via gradient-ascent updates on the token representations. For each scene, <span class="sc">ArchAttend</span> selects an anchor element from \(\mathcal{E}_{\mathrm{arch}}\) that received the strongest cross-view attention.</p>
+          <p>By aggregating over the per-patch SCVA, we define the cumulative element-wise attention score at the last layer \(l_{\mathrm{last}}\) as</p>
         </div>
         <!-- Eq. eq:anchor-score belongs to intervention, Pass 1, not visualization. -->
-        <div id="aw-anchor-selection" class="aw-scva-equation">
-          <h3>Pass 1: Determine the anchor</h3>
-          <p class="aw-scva-formula-intro">By aggregating over the per-patch SCVA, we define the cumulative element-wise attention score at the last layer \(l_{\mathrm{last}}\) as</p>
+        <div id="aw-anchor-selection" class="content has-text-justified aw-method-equation">
           <div class="aw-scva-formula">$$S^{l_{\mathrm{last}}}(e) = \sum_{i \in \mathcal{P}_e} s_i$$</div>
-          <p>This score measures the total cross-view attention directed toward element \(e\), so that elements with stronger correspondence across views receive higher scores.</p>
-          <p>The anchor is therefore \(e^* = \arg\max_{e \in \mathcal{E}_{\mathrm{arch}}} S^{l_{\mathrm{last}}}(e)\).</p>
+          <p>This score measures the total cross-view attention directed toward element \(e\), so that elements with stronger correspondence across views receive higher scores. The anchor is therefore \(e^* = \arg\max_{e \in \mathcal{E}_{\mathrm{arch}}} S^{l_{\mathrm{last}}}(e)\).</p>
         </div>
       </div>
     </div>
