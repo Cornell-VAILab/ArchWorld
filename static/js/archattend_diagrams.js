@@ -148,7 +148,7 @@
     const canvas = diagram.getBoundingClientRect();
     const scale = canvas.width / diagram.offsetWidth;
     const measured = new Map([...diagram.querySelectorAll(
-      '.awcr-mask, .awcr-legend-item i, .awcr-semantic-strip i, .awcr-score, .awcr-score .awcr-math, .awcr-anchor-value, .awcr-gradient-formula, .awcr-vector, .awcr-vector i'
+      '.awcr-mask, .awcr-legend-item i, .awcr-semantic-strip i, .awcr-score, .awcr-score .awcr-math, .awcr-token-glyph, .awcr-anchor-value, .awcr-gradient-formula, .awcr-vector, .awcr-vector i'
     )].map(el => [el, el.getBoundingClientRect()]));
     const point = (el, x = .5, y = .5) => {
       const rect = measured.get(el);
@@ -161,7 +161,7 @@
     trails.setAttribute('viewBox', '0 0 ' + diagram.offsetWidth + ' ' + diagram.offsetHeight);
     motionLayer.appendChild(trails);
     function flight(from, to, options) {
-      const { color, at, duration, round = false, size = 9, bend = 0, trail = false, kind } = options;
+      const { color, at, duration, round = false, size = 9, endScale = .7, bend = 0, trail = false, kind } = options;
       const dot = document.createElement('i');
       dot.className = 'awcr-particle' + (round ? ' is-round' : '');
       dot.dataset.motion = kind;
@@ -176,7 +176,7 @@
         const p = [0, 1].map(axis => (1 - t) * (1 - t) * from[axis] + 2 * (1 - t) * t * middle[axis] + t * t * to[axis]);
         frames.push({ opacity: 1, transform: transform(p), offset: .08 + .84 * u });
       }
-      frames.push({ opacity: 0, transform: transform(to, .7), offset: 1 });
+      frames.push({ opacity: 0, transform: transform(to, endScale), offset: 1 });
       track(dot, frames, at, duration);
       if (trail) {
         const path = document.createElementNS(svgNS, 'path');
@@ -267,9 +267,12 @@
     ], 13000, 2500);
     const winningFormula = root.querySelector('.awcr-score.is-anchor .awcr-math');
     [...root.querySelectorAll('.awcr-semantic-strip [data-element="pagoda"]')].forEach((token, view) => {
+      const target = winningFormula.querySelector(view ? '.awcr-token-glyph.is-round' : '.awcr-token-glyph:not(.is-round)');
       glow(token, colors.pagoda, 12800 + view * 180, 1800);
-      flight(point(token), point(winningFormula, view ? .46 : .34, .5), {
+      // Merge into the rendered glyph itself, including its exact size.
+      flight(point(token), point(target), {
         color: colors.pagoda, at: 13250 + view * 200, duration: 1400,
+        size: measured.get(target).width / scale, endScale: 1,
         round: view === 1, bend: view ? 18 : -18, trail: true, kind: 'anchor'
       });
     });
