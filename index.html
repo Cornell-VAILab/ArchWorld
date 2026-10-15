@@ -414,6 +414,68 @@
     <div class="columns is-centered">
       <div class="column is-four-fifths">
         <div class="content has-text-justified">
+          <!-- Original sentence: overleaf_paper/5-method.tex, Semantic Cross-View Attention. -->
+          <p>We visualize Semantic Cross-View Attention (SCVA) by aggregating attention from each query patch \(i\) to key patches that share its semantic element.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container aw-method-container">
+    <!-- Original image frames from overleaf_paper/figures/motivation.pdf. -->
+    <figure class="aw-scva" aria-label="Semantic cross-view attention in low- and high-error reconstructions">
+      <div class="aw-scva-comparison">
+        <section class="aw-scva-case" aria-labelledby="aw-scva-low">
+          <h3 id="aw-scva-low">Low reconstruction error</h3>
+          <div class="aw-scva-grid">
+            <span class="aw-scva-label">Recon.</span><span class="aw-scva-label aw-scva-map-label">Cross-view attention maps</span>
+            <img src="static/images/motivation/low-1-recon.webp" width="447" height="322" alt="Detailed church reconstruction in a low-error scene" loading="lazy" decoding="async">
+            <img src="static/images/motivation/low-1-attn-1.webp" width="428" height="324" alt="Church view 1: high attention on the facade" loading="lazy" decoding="async">
+            <img src="static/images/motivation/low-1-attn-2.webp" width="427" height="324" alt="Church view 2: high attention on architectural details" loading="lazy" decoding="async">
+            <img src="static/images/motivation/low-1-attn-3.webp" width="427" height="324" alt="Church view 3: high attention on the entrance" loading="lazy" decoding="async">
+            <img src="static/images/motivation/low-2-recon.webp" width="412" height="336" alt="Detailed statue reconstruction in a low-error scene" loading="lazy" decoding="async">
+            <img src="static/images/motivation/low-2-attn-1.webp" width="428" height="321" alt="Statue view 1: attention concentrates on the landmark" loading="lazy" decoding="async">
+            <img src="static/images/motivation/low-2-attn-2.webp" width="427" height="321" alt="Statue view 2: attention concentrates on the landmark" loading="lazy" decoding="async">
+            <img src="static/images/motivation/low-2-attn-3.webp" width="427" height="321" alt="Statue view 3: attention concentrates on the landmark" loading="lazy" decoding="async">
+          </div>
+          <p>Attention concentrates on architectural regions.</p>
+        </section>
+        <section class="aw-scva-case" aria-labelledby="aw-scva-high">
+          <h3 id="aw-scva-high">High reconstruction error</h3>
+          <div class="aw-scva-grid">
+            <span class="aw-scva-label">Recon.</span><span class="aw-scva-label aw-scva-map-label">Cross-view attention maps</span>
+            <img src="static/images/motivation/high-1-recon.webp" width="496" height="312" alt="Blurry temple reconstruction in a high-error scene" loading="lazy" decoding="async">
+            <img src="static/images/motivation/high-1-attn-1.webp" width="428" height="322" alt="Temple view 1: attention leaks onto the water" loading="lazy" decoding="async">
+            <img src="static/images/motivation/high-1-attn-2.webp" width="428" height="322" alt="Temple view 2: attention leaks onto the water" loading="lazy" decoding="async">
+            <img src="static/images/motivation/high-1-attn-3.webp" width="427" height="320" alt="Temple view 3: attention leaks away from the architecture" loading="lazy" decoding="async">
+            <img src="static/images/motivation/high-2-recon.webp" width="496" height="248" alt="Incomplete monument reconstruction in a high-error scene" loading="lazy" decoding="async">
+            <img src="static/images/motivation/high-2-attn-1.webp" width="427" height="321" alt="Monument view 1: high attention on the sky" loading="lazy" decoding="async">
+            <img src="static/images/motivation/high-2-attn-2.webp" width="427" height="321" alt="Monument view 2: attention leaks into the background" loading="lazy" decoding="async">
+            <img src="static/images/motivation/high-2-attn-3.webp" width="428" height="321" alt="Monument view 3: high attention on the sky" loading="lazy" decoding="async">
+          </div>
+          <p>Attention leaks onto non-architectural patches.</p>
+        </section>
+      </div>
+      <figcaption class="aw-scva-legend"><span>SCVA</span><span>Low</span><span class="aw-scva-scale" aria-hidden="true"></span><span>High</span></figcaption>
+    </figure>
+  </div>
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <!-- Eqs. attention-score and eq:anchor-score, unchanged from 5-method.tex. -->
+        <div class="aw-scva-equations" aria-label="Semantic cross-view attention scores">
+          <div class="aw-scva-equation">
+            <h3>Patch attention</h3>
+            <div class="aw-scva-formula">$$s_i = \sum_{j \in \mathcal{P}_e} \mathbf{A}^{l}[i,j]$$</div>
+            <p>Attention to the same element across views.</p>
+          </div>
+          <div class="aw-scva-equation">
+            <h3>Element attention</h3>
+            <div class="aw-scva-formula">$$S^{l_{\mathrm{last}}}(e) = \sum_{i \in \mathcal{P}_e} s_i$$</div>
+            <p>Total attention toward element \(e\) at the last layer.</p>
+          </div>
+        </div>
+        <p class="aw-scva-notation"><span class="aw-scva-term">\(\mathcal{P}_e\):</span> patches of element \(e\) across all input views. <span class="aw-scva-term">\(\mathbf{A}^{l}\):</span> attention at global layer \(l\), averaged over heads.</p>
+        <div class="content has-text-justified">
           <!-- Original sentence: overleaf_paper/1-intro.tex, introduction to ArchAttend. -->
           <p class="awcr-intro">Leveraging insights from model failings, we introduce <span class="sc">ArchAttend</span>, a training-free intervention scheme that improves reconstruction quality by steering cross-view attention toward semantically meaningful architectural elements.</p>
         </div>
