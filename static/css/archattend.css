@@ -20,6 +20,7 @@
 .aw-scva-equation .aw-scva-notation { margin-top: 12px; padding-top: 10px; border-top: 1px solid #e5e9ed; }
 .aw-scva-definition { display: block; }
 .aw-scva-term { white-space: nowrap; }
+.aw-scva-map-note { margin: 16px 0 0; text-align: center; font-size: 16px; line-height: 1.5; color: #6b7685; }
 @media (max-width: 900px) {
   .aw-scva-comparison { grid-template-columns: 1fr; gap: 24px; }
   .aw-scva-case + .aw-scva-case { border-top: 1px solid #e5e9ed; padding-top: 20px; }
