@@ -21,9 +21,10 @@
   };
   const RULE = '#e5e7eb', INK = '#1f2937', FAINT = '#9ca3af';
 
-  const W = 1200, TILE = 96, OUT = 88;
+  const W = 1200, TILE = 96, OUT = 112;
   // how far down the canvas each stage reaches
-  const DEPTH = [312, 312, 312, 312, 312, 496, 730, 730];
+  // bottom y each stage reaches; the output tiles end at 744 (632 + 88 + border)
+  const DEPTH = [312, 312, 312, 312, 312, 496, 752, 752];
   const FULL = DEPTH[DEPTH.length - 1];
   const TOP = 26;   // crop the air above the first band title
 
@@ -208,40 +209,46 @@
         }
       });
     };
-    tex(add, 5, 96, CY - 58, 120, '\\mathbf{T}^{\\ell}', 'T l', 'middle', 17);
-    cols(5, 96, '#a6a6a6');
-    arrow(add, 5, 136, 176, CY, INK);
-    add(5, 'rect', { x: 196, y: CY - 42, width: 500, height: 84, rx: 8, fill: '#fafafa', stroke: RULE });
-    tex(add, 5, 446, CY - 10, 460,
+    // One measure across the full width: tokens, the update, tokens, the note.
+    const TL = 86, BOX0 = 186, BOXW = 600, TR = 900, NOTE = 1000;
+    const BOXC = BOX0 + BOXW / 2;
+    tex(add, 5, TL + 10, CY - 58, 120, '\\mathbf{T}^{\\ell}', 'T l', 'middle', 17);
+    cols(5, TL, '#a6a6a6');
+    arrow(add, 5, TL + 46, BOX0 - 14, CY, INK);
+    add(5, 'rect', { x: BOX0, y: CY - 42, width: BOXW, height: 84, rx: 8, fill: '#fafafa', stroke: RULE });
+    tex(add, 5, BOXC, CY - 10, BOXW - 60,
       '\\mathbf{T}^{\\ell} \\;\\leftarrow\\; \\mathbf{T}^{\\ell} '
       + '+ \\eta \\cdot \\nabla S^{\\ell}(e^{*})',
       'T^l <- T^l + eta grad S^l(e*)', 'middle', 21);
-    add(5, 'text', { x: 446, y: CY + 28, 'text-anchor': 'middle', class: 'aw-pipe-note' },
+    add(5, 'text', { x: BOXC, y: CY + 28, 'text-anchor': 'middle', class: 'aw-pipe-note' },
       'one step per block · model weights frozen');
-    arrow(add, 5, 716, 756, CY, INK);
-    tex(add, 5, 790, CY - 58, 140, '\\mathbf{T}^{\\ell+1}', 'T l+1', 'middle', 17);
-    cols(5, 790, ANCHOR);
-    lab(add, 5, 876, CY - 6, '× 24 BLOCKS', 'start');
-    lab(add, 5, 876, CY + 14, 'ONE PASS, NO RETRAINING', 'start');
+    arrow(add, 5, BOX0 + BOXW + 14, TR - 46, CY, INK);
+    tex(add, 5, TR + 10, CY - 58, 140, '\\mathbf{T}^{\\ell+1}', 'T l+1', 'middle', 17);
+    cols(5, TR, ANCHOR);
+    lab(add, 5, NOTE, CY - 6, '× 24 BLOCKS', 'start');
+    lab(add, 5, NOTE, CY + 14, 'ONE PASS, NO RETRAINING', 'start');
 
     // ===== D. output, y 494..700 ==========================================
     add(6, 'line', { x1: 24, x2: 1176, y1: 522, y2: 522, stroke: RULE });
     band(6, 24, 1176, 550, TONE.d, 'OUTPUT RECONSTRUCTION AND ATTENTION MAPS');
     const COLS = ['Reconstruction', 'Close-up', 'Attention I₁', 'Attention I₂'];
     const FILES = (k) => [`recon_${k}.jpg`, `zoom_${k}.jpg`, `attn_${k}_1.jpg`, `attn_${k}_2.jpg`];
-    const GW = 4 * OUT + 3 * 10;                       // 382; two groups, centred
-    [['before', 6, 130, '#ff4444'], ['after', 7, 688, '#ff9800']].forEach(([k, s, x0, tone]) => {
+    // Two groups of four, mirrored about the canvas centre so the row reads as
+    // one comparison rather than a cluster adrift on the left.
+    const GAP = 12, GW = 4 * OUT + 3 * GAP, SPLIT = 72;
+    const BX = (W - 2 * GW - SPLIT) / 2, AX = BX + GW + SPLIT;
+    [['before', 6, BX, '#ff4444'], ['after', 7, AX, '#ff9800']].forEach(([k, s, x0, tone]) => {
       add(s, 'rect', { x: x0, y: 584, width: GW, height: 22, rx: 11, fill: tone, opacity: 0.14 });
       lab(add, s, x0 + 14, 599, k.toUpperCase(), 'start', 'aw-pipe-side');
       FILES(k).forEach((f, i) => {
-        const x = x0 + i * (OUT + 10);
+        const x = x0 + i * (OUT + GAP);
         lab(add, s, x + OUT / 2, 624, COLS[i], 'middle');
         tile(add, s, x, 632, OUT, f, `${COLS[i]} ${k} the intervention`);
       });
       const [cx, cy, cw, ch] = CALLOUT[k];
       add(s, 'rect', { x: x0 + cx * OUT, y: 632 + cy * OUT, width: cw * OUT, height: ch * OUT,
         rx: 2, fill: 'none', stroke: tone, 'stroke-width': 1.6 });
-      add(s, 'rect', { x: x0 + OUT + 10 + 0.5, y: 632.5, width: OUT - 1, height: OUT - 1,
+      add(s, 'rect', { x: x0 + OUT + GAP + 0.5, y: 632.5, width: OUT - 1, height: OUT - 1,
         rx: 4, fill: 'none', stroke: tone, 'stroke-width': 2 });
     });
     return svg;
