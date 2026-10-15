@@ -74,6 +74,7 @@
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/index.css">
   <link rel="stylesheet" href="static/css/archworld.css">
+  <link rel="stylesheet" href="static/css/archattend.css">
 
   <!-- KaTeX typesets a handful of formulas. Loaded with defer it sat on the
        DOMContentLoaded critical path, where one slow CDN response stalls the
@@ -113,7 +114,7 @@
   <!-- Defer non-critical JavaScript -->
   <script defer src="static/js/index.js"></script>
   <script defer src="static/js/region_table.js"></script>
-  <script defer src="static/js/archattend_pipeline.js"></script>
+  <script defer src="static/js/archattend_diagrams.js"></script>
   <script defer src="static/js/before_after_chart.js"></script>
   <script defer src="static/js/teaser_video.js"></script>
   
@@ -407,57 +408,23 @@
 
 
 <!-- ArchAttend method -->
-<section class="section">
+<section id="archattend" class="section awcr-section" aria-label="ArchAttend architecture">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 aw-section-title"><span class="sc">ArchAttend</span>: Intervention via Semantic Cross-View Attention Maps</h2>
+    <h2 class="title is-3 aw-section-title"><span class="sc">ArchAttend</span></h2>
     <div class="columns is-centered">
       <div class="column is-four-fifths">
         <div class="content has-text-justified">
-          <h3 class="title is-5">Semantic Cross-View Attention</h3>
-          <p>
-            We aggregate cross-view attention over semantic elements segmented with SAM 3 for both architectural \(\mathcal{E}_{\mathrm{arch}}\) (e.g., minarets, domes) and non-architectural elements \(\mathcal{E}_{\mathrm{non}}\) (e.g., sky, trees). In low-error scenes, we find that attention concentrates on the landmark; in high-error scenes, it leaks onto sky, water, and other distractors.
-          </p>
+          <!-- Original sentence: overleaf_paper/1-intro.tex, introduction to ArchAttend. -->
+          <p class="awcr-intro">Leveraging insights from model failings, we introduce <span class="sc">ArchAttend</span>, a training-free intervention scheme that improves reconstruction quality by steering cross-view attention toward semantically meaningful architectural elements.</p>
         </div>
-
-        <h3 class="title is-5">A Two-Pass Intervention</h3>
       </div>
     </div>
-
-    <!-- Two figures, one per pass. Each spans the full container: at
-         text-column width the labels fall below legibility. -->
-    <h3 class="aw-pipe-title"><span class="n">Pass 1</span>Semantic Cross-View Attention</h3>
-    <figure class="aw-pipe" id="archattend-fig1">
-      <svg class="aw-pipe-icons" aria-hidden="true" focusable="false"><defs>
-        <symbol id="aw-i-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7Z"/></symbol>
-        <symbol id="aw-i-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></symbol>
-        <symbol id="aw-i-replay" viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 .8 7M4 4v6h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-        <symbol id="aw-i-whole" viewBox="0 0 24 24"><path d="M4 9V5a1 1 0 0 1 1-1h4M15 4h4a1 1 0 0 1 1 1v4M20 15v4a1 1 0 0 1-1 1h-4M9 20H5a1 1 0 0 1-1-1v-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-      </defs></svg>
-      <div class="aw-pipe-controls">
-        <button class="aw-pipe-play" type="button" aria-label="Play this figure">
-          <svg class="aw-pipe-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#aw-i-play"/></svg><span>Play</span>
-        </button>
-        <div class="aw-pipe-steps" role="group" aria-label="Pass 1 stages"></div>
-        <button class="aw-pipe-reset" type="button" title="Show the complete figure" aria-label="Show the complete figure">
-          <svg class="aw-pipe-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#aw-i-whole"/></svg>
-        </button>
+  </div>
+  <div class="container aw-method-container">
+    <figure id="archattend-pipeline" class="awcr" aria-label="ArchAttend: semantic inputs, anchor selection, and architecture-centric intervention">
+      <div class="awcr-viewport" role="group" aria-label="ArchAttend pipeline">
+        <div class="awcr-row"></div>
       </div>
-      <figcaption class="aw-pipe-caption">Two views, segmented with SAM 3, run through the frozen backbone; the architectural element whose tokens draw the most cross-view attention becomes the anchor \(e^{*}\).</figcaption>
-      <div class="aw-pipe-figure" style="--figure-ratio:920/511"></div>
-    </figure>
-    <h3 class="aw-pipe-title"><span class="n">Pass 2</span>Architecture-centric Intervention</h3>
-    <figure class="aw-pipe" id="archattend-fig2">
-      <div class="aw-pipe-controls">
-        <button class="aw-pipe-play" type="button" aria-label="Play this figure">
-          <svg class="aw-pipe-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#aw-i-play"/></svg><span>Play</span>
-        </button>
-        <div class="aw-pipe-steps" role="group" aria-label="Pass 2 stages"></div>
-        <button class="aw-pipe-reset" type="button" title="Show the complete figure" aria-label="Show the complete figure">
-          <svg class="aw-pipe-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#aw-i-whole"/></svg>
-        </button>
-      </div>
-      <figcaption class="aw-pipe-caption">One gradient-ascent step toward the anchor, repeated in all 24 global attention blocks with the weights frozen, and what it does to the reconstruction and the attention maps.</figcaption>
-      <div class="aw-pipe-figure" style="--figure-ratio:920/682"></div>
     </figure>
   </div>
 </section>
