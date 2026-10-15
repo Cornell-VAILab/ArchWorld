@@ -13,14 +13,17 @@
 .aw-scva-scale { width: 112px; height: 8px; border-radius: 2px; background: linear-gradient(90deg, #000080, #0000ff, #00ffff, #ffff00, #ff0000, #800000); }
 .aw-scva-equation { min-width: 0; max-width: 560px; margin: 16px auto 0; padding: 16px; border: 1px solid #dfe5ea; border-radius: 10px; background: #f8faf9; text-align: center; }
 .aw-scva-equation h3 { margin: 0; color: #365e43; font-size: 16px; font-weight: 500; }
+.aw-scva-equation .aw-scva-formula-intro { margin-top: 10px; }
 .aw-scva-formula { display: grid; align-items: center; min-height: 86px; font-size: 20px; color: #263445; }
 .aw-scva-formula .katex-display { margin: 12px 0; padding: 3px 0; }
 .aw-scva-equation p { margin: 0; font-size: 15px; line-height: 1.5; color: #6b7685; }
 .aw-scva-equation p + p { margin-top: 6px; }
 .aw-scva-equation .aw-scva-notation { margin-top: 12px; padding-top: 10px; border-top: 1px solid #e5e9ed; }
 .aw-scva-definition { display: block; }
-.aw-scva-term { white-space: nowrap; }
-.aw-scva-map-note { margin: 16px 0 0; text-align: center; font-size: 16px; line-height: 1.5; color: #6b7685; }
+.aw-scva-definition + .aw-scva-definition { margin-top: 6px; }
+.aw-scva-explanation { max-width: 560px; margin: 16px auto 0; }
+.aw-scva-explanation .aw-scva-equation { margin: 0; }
+.aw-scva-map-note { margin: 14px 0 0; text-align: center; font-size: 16px; line-height: 1.6; color: #6b7685; }
 @media (max-width: 900px) {
   .aw-scva-comparison { grid-template-columns: 1fr; gap: 24px; }
   .aw-scva-case + .aw-scva-case { border-top: 1px solid #e5e9ed; padding-top: 20px; }
