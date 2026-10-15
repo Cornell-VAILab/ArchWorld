@@ -2,8 +2,8 @@
 // while scrolled off screen (saves CPU), and stays on its first frame (the figure) for
 // visitors who prefer reduced motion.
 //
-// The file is kept at full resolution, so it is the heaviest thing on the page.
-// Rather than shrink it, the source is attached only after the window has
+// The file (720p, ~6 MB) is still the heaviest thing on the page, so the
+// source is attached only after the window has
 // loaded and the browser is idle: the poster is the teaser figure, so the
 // section looks finished from the first paint, and the video streams in behind
 // everything else instead of ahead of it.
