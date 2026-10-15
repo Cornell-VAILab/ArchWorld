@@ -413,17 +413,21 @@
     <h2 class="title is-3 aw-section-title"><span class="sc">ArchAttend</span></h2>
     <div class="columns is-centered">
       <div class="column is-four-fifths">
-        <div class="content has-text-justified">
-          <!-- Original sentence: overleaf_paper/5-method.tex, Semantic Cross-View Attention. -->
-          <p>We visualize Semantic Cross-View Attention (SCVA) by aggregating attention from each query patch \(i\) to key patches that share its semantic element.</p>
+        <div class="content has-text-justified aw-scva-context">
+          <!-- Original sentences: overleaf_paper/5-method.tex, Semantic Cross-View Attention. -->
+          <p><a href="https://arxiv.org/abs/2511.22686" target="_blank" rel="noopener noreferrer">Prior work</a> shows that 3D foundation models implicitly use cross-view attention to link corresponding patches across different image views, suggesting these attention maps encode the geometric correspondences underlying their predictions. Rather than analyzing individual patch pairs, we aggregate this patch-level attention over <em>semantic</em> elements, i.e., groups of patches that depict the same element. In particular, we examine which kinds of architectural elements the model concentrates its cross-view attention on, and compare attention patterns between scenes with large and small reconstruction errors.</p>
+          <p>To support this investigation, we annotate each scene with pixel-level masks corresponding to two element sets: a set of architectural elements \(\mathcal{E}_{\mathrm{arch}}\) and a set of non-architectural elements \(\mathcal{E}_{\mathrm{non}}\). We visualize Semantic Cross-View Attention (SCVA) by aggregating attention from each query patch \(i\) to key patches that share its semantic element.</p>
         </div>
         <!-- Eq. attention-score: the per-patch quantity visualized in the maps below. -->
         <div id="aw-scva-visualization" class="aw-scva-equation">
           <h3>Visualizing SCVA</h3>
           <div class="aw-scva-formula">$$s_i = \sum_{j \in \mathcal{P}_e} \mathbf{A}^{l}[i,j]$$</div>
           <p>The value \(s_i\) colors patch \(i\) in the SCVA maps below (warm = high, cold = low).</p>
+          <p class="aw-scva-notation">
+            <span class="aw-scva-definition"><span class="aw-scva-term">\(\mathcal{P}_e\):</span> patches of element \(e\) across all input views.</span>
+            <span class="aw-scva-definition"><span class="aw-scva-term">\(\mathbf{A}^{l}\):</span> attention at global layer \(l\), averaged over heads.</span>
+          </p>
         </div>
-        <p class="aw-scva-notation"><span class="aw-scva-term">\(\mathcal{P}_e\):</span> patches of element \(e\) across all input views. <span class="aw-scva-term">\(\mathbf{A}^{l}\):</span> attention at global layer \(l\), averaged over heads.</p>
       </div>
     </div>
   </div>
@@ -469,6 +473,8 @@
     <div class="columns is-centered">
       <div class="column is-four-fifths">
         <div class="content has-text-justified">
+          <!-- Original insight and motivation: overleaf_paper/5-method.tex, after Eq. attention-score. -->
+          <p class="aw-scva-insight">SCVA maps reveal a striking pattern: in scenes with low reconstruction error, cross-view attention concentrates on landmark-centric patches, while in high-error scenes it leaks onto semantically irrelevant regions (e.g., sky, water) that contribute little signal for reconstruction. To improve reconstruction in challenging scenes, we aim to redirect attention from such distractors toward semantically important architectural patches.</p>
           <!-- Original sentence: overleaf_paper/1-intro.tex, introduction to ArchAttend. -->
           <p class="awcr-intro">Leveraging insights from model failings, we introduce <span class="sc">ArchAttend</span>, a training-free intervention scheme that improves reconstruction quality by steering cross-view attention toward semantically meaningful architectural elements.</p>
         </div>

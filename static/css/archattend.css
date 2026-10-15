@@ -17,7 +17,8 @@
 .aw-scva-formula .katex-display { margin: 12px 0; padding: 3px 0; }
 .aw-scva-equation p { margin: 0; font-size: 15px; line-height: 1.5; color: #6b7685; }
 .aw-scva-equation p + p { margin-top: 6px; }
-.aw-scva-notation { margin: 12px 0 0; font-size: 15px; line-height: 1.6; color: #6b7685; text-align: center; }
+.aw-scva-equation .aw-scva-notation { margin-top: 12px; padding-top: 10px; border-top: 1px solid #e5e9ed; }
+.aw-scva-definition { display: block; }
 .aw-scva-term { white-space: nowrap; }
 @media (max-width: 900px) {
   .aw-scva-comparison { grid-template-columns: 1fr; gap: 24px; }
