@@ -365,15 +365,7 @@
       <div class="column is-four-fifths">
         <div class="content has-text-justified">
           <p>
-            We benchmark VGGT, Depth Anything 3, and π<sup>3</sup> on <span class="sc">ArchWorld</span>, measuring reconstruction error with Chamfer Distance in meters:
-          </p>
-          $$\mathrm{CD} = \frac{\mathrm{Accuracy} + \mathrm{Completeness}}{2} \times \mathrm{ScaleFactor}$$
-          <p>
-            Because landmark size varies across regions, we also report normalized CD, which divides CD by the scene's metric extent:
-          </p>
-          $$\widehat{\mathrm{CD}} = \frac{\mathrm{CD}}{\mathrm{Extent}}$$
-          <p>
-            The table below reports each model's median CD and \(\widehat{\mathrm{CD}}\) by geographic region, revealing clear regional disparities that persist even for π<sup>3</sup>, the best-performing model.
+            We benchmark VGGT, Depth Anything 3, and π<sup>3</sup> on <span class="sc">ArchWorld</span>, measuring reconstruction error with Chamfer Distance (m) and \(\widehat{\mathrm{CD}}\), a normalized version of Chamfer Distance that we introduce. The table below reports each model's median CD and \(\widehat{\mathrm{CD}}\) by geographic region, revealing clear regional disparities that persist even for π<sup>3</sup>, the best-performing model.
           </p>
         </div>
 
@@ -394,13 +386,13 @@
         <script defer src="static/js/qualitative.js"></script>
         <div class="content has-text-justified">
           <p>
-            Regional disparities persist even within the same architecture type. Below, we show π<sup>3</sup>'s median \(\widehat{\mathrm{CD}}\) for each region and type of religious building (churches, mosques, and temples), along with an example scene for each median.
+            We also find that regional disparities persist even within the same architecture type, broadly following the overall geographic trends Below, we show π<sup>3</sup>'s median \(\widehat{\mathrm{CD}}\) for each region and type of religious building (churches, mosques, and temples), along with an example scene for each median.
           </p>
         </div>
         <div id="qual-figure" class="aw-qual"></div>
         <div class="content has-text-justified">
           <p>
-            π<sup>3</sup> struggles to reconstruct minarets, as in the Muhammad Ali Mosque, while the dense urban surroundings of Mary, Queen of the World Cathedral introduce spurious geometry. These examples suggest that geographic disparities also reflect differences in architectural characteristics and scene complexity.
+            Examining the corresponding median reconstructions provides further insight into how architectural features and surrounding scene complexity may contribute to these disparities. For instance, π<sup>3</sup> struggles to reconstruct minarets in both the Muhammad Ali Mosque in Africa and the Nasir-ol-Molk Mosque in West/Central Asia. However, the smaller minarets of Nasir-ol-Molk occupy a smaller fraction of the scene, limiting their contribution to the overall reconstruction error. The relatively poor performance of Mary, Queen of the World Cathedral in North America illustrates a different challenge: its dense urban surroundings introduce spurious geometry that increases reconstruction error. We observe similar failures across other North American scenes, suggesting that urban complexity contributes to the region's relatively poor performance, despite North America's high representation in the training dataset. In contrast, Southeast Asia, an underrepresented region, performs extremely well because it is largely (68%) composed of simple church facades. Together, these observations suggest that geographic disparities reflect not only differences in data representation, but also variations in architectural types and scene complexity.
           </p>
         </div>
         <!-- End qualitative results -->
