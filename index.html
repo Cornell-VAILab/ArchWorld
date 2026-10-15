@@ -417,6 +417,13 @@
           <!-- Original sentence: overleaf_paper/5-method.tex, Semantic Cross-View Attention. -->
           <p>We visualize Semantic Cross-View Attention (SCVA) by aggregating attention from each query patch \(i\) to key patches that share its semantic element.</p>
         </div>
+        <!-- Eq. attention-score: the per-patch quantity visualized in the maps below. -->
+        <div id="aw-scva-visualization" class="aw-scva-equation">
+          <h3>Visualizing SCVA</h3>
+          <div class="aw-scva-formula">$$s_i = \sum_{j \in \mathcal{P}_e} \mathbf{A}^{l}[i,j]$$</div>
+          <p>The value \(s_i\) colors patch \(i\) in the SCVA maps below (warm = high, cold = low).</p>
+        </div>
+        <p class="aw-scva-notation"><span class="aw-scva-term">\(\mathcal{P}_e\):</span> patches of element \(e\) across all input views. <span class="aw-scva-term">\(\mathbf{A}^{l}\):</span> attention at global layer \(l\), averaged over heads.</p>
       </div>
     </div>
   </div>
@@ -461,23 +468,16 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-four-fifths">
-        <!-- Eqs. attention-score and eq:anchor-score, unchanged from 5-method.tex. -->
-        <div class="aw-scva-equations" aria-label="Semantic cross-view attention scores">
-          <div class="aw-scva-equation">
-            <h3>Patch attention</h3>
-            <div class="aw-scva-formula">$$s_i = \sum_{j \in \mathcal{P}_e} \mathbf{A}^{l}[i,j]$$</div>
-            <p>Attention to the same element across views.</p>
-          </div>
-          <div class="aw-scva-equation">
-            <h3>Element attention</h3>
-            <div class="aw-scva-formula">$$S^{l_{\mathrm{last}}}(e) = \sum_{i \in \mathcal{P}_e} s_i$$</div>
-            <p>Total attention toward element \(e\) at the last layer.</p>
-          </div>
-        </div>
-        <p class="aw-scva-notation"><span class="aw-scva-term">\(\mathcal{P}_e\):</span> patches of element \(e\) across all input views. <span class="aw-scva-term">\(\mathbf{A}^{l}\):</span> attention at global layer \(l\), averaged over heads.</p>
         <div class="content has-text-justified">
           <!-- Original sentence: overleaf_paper/1-intro.tex, introduction to ArchAttend. -->
           <p class="awcr-intro">Leveraging insights from model failings, we introduce <span class="sc">ArchAttend</span>, a training-free intervention scheme that improves reconstruction quality by steering cross-view attention toward semantically meaningful architectural elements.</p>
+        </div>
+        <!-- Eq. eq:anchor-score belongs to intervention, Pass 1, not visualization. -->
+        <div id="aw-anchor-selection" class="aw-scva-equation">
+          <h3>Pass 1: Determine the anchor</h3>
+          <div class="aw-scva-formula">$$S^{l_{\mathrm{last}}}(e) = \sum_{i \in \mathcal{P}_e} s_i$$</div>
+          <p>Sum patch scores for each architectural element at the last layer.</p>
+          <p>The anchor is therefore \(e^* = \arg\max_{e \in \mathcal{E}_{\mathrm{arch}}} S^{l_{\mathrm{last}}}(e)\).</p>
         </div>
       </div>
     </div>
