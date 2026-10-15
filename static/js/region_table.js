@@ -6,7 +6,7 @@
     wca: { name: 'WC Asia', n: 51 },
     sa: { name: 'S Asia', n: 53 },
     la: { name: 'L Amer', n: 50 },
-    af: { name: 'Africa', n: 38 },
+    af: { name: 'Africa', n: 40 },
     eu: { name: 'Europe', n: 51 },
     ea: { name: 'E Asia', n: 43 },
     na: { name: 'N Amer', n: 44 },

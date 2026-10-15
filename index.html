@@ -299,9 +299,10 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
-          <!-- TODO: Replace with your paper abstract -->
           <p>
-            Internet-scale photo collections of real-world landmarks have driven progress in 3D computer vision yet remain highly challenging for modern 3D foundation models  (3DFMs) that estimate scene structure in a single feed-forward pass. In this work, we introduce <span class="sc">ArchWorld</span>, a benchmark of 3D architectural landmarks with high geographic coverage and rich metadata, and use it to conduct a thorough error analysis of current 3DFMs to understand where they fall short and how they can be improved. We find that scene extent is a confounding factor when comparing performance across regions, and we introduce an extent-normalized version of Chamfer Distance to resolve this issue. We examine socially relevant disparities in model error and find that model performance varies by geographic region, but that the trends do not closely match training data representation. Leveraging insights from model failings, we introduce an intervention scheme that improves 3DFM performance while simultaneously reducing geographic disparities.        </div>
+            Internet-scale photo collections of real-world landmarks have driven progress in 3D computer vision yet remain highly challenging for modern 3D foundation models (3DFMs) that estimate scene structure in a single feed-forward pass. In this work, we introduce <span class="sc">ArchWorld</span>, a benchmark of 3D architectural landmarks with high geographic coverage and rich metadata. We use this benchmark to conduct a thorough error analysis of current 3DFMs to understand where they fall short and how they can be improved. We examine socially relevant disparities in model error and find that model performance varies by geographic region; however, unlike typical fairness regimes, the trends only partially match training data representation. Our investigation reveals that the observed geographic disparities reflect not only differences in data representation and scene size but also differences in region-specific architectural features and background distractors that make scenes from different regions inherently vary in difficulty. Leveraging insights from these model failings, we introduce an intervention scheme that improves 3DFM performance while simultaneously reducing geographic disparities.
+          </p>
+        </div>
       </div>
     </div>
   </div>
