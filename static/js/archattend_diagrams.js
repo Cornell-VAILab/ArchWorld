@@ -104,6 +104,13 @@
     if (!window.katex) return false;
     root.querySelectorAll('[data-tex]:not([data-math-ready])').forEach(node => {
       window.katex.render(node.dataset.tex, node, { throwOnError: true, output: 'htmlAndMathml' });
+      if (node.closest('.awcr-score')) {
+        node.querySelectorAll('.katex-html .mord').forEach(glyph => {
+          if (glyph.children.length || !['■', '∙'].includes(glyph.textContent)) return;
+          glyph.classList.add('awcr-token-glyph');
+          if (glyph.textContent === '∙') glyph.classList.add('is-round');
+        });
+      }
       node.dataset.mathReady = 'true';
     });
     return true;
