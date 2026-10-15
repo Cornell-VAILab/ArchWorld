@@ -313,8 +313,8 @@ h1.title.publication-title { font-size: 2.6rem; }
   border: 1px solid var(--aw-border);
   border-radius: 14px;
   /* The caption says what the current step is doing, so it has to stay on
-     screen while the figure plays. <figcaption> must be the first or last
-     child to be valid, so it is ordered above the figure rather than moved. */
+     screen while the figure plays. <figcaption> is only valid as the first or
+     last child, so it is ordered above the figure rather than moved. */
   display: flex;
   flex-direction: column;
 }
@@ -412,37 +412,30 @@ h1.title.publication-title { font-size: 2.6rem; }
   position: relative;
   width: 100%;
   aspect-ratio: var(--figure-ratio);
-  /* the canvas is cropped to the revealed stages, so it grows as they appear */
-  transition: aspect-ratio 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition: aspect-ratio 0.35s ease;
 }
 .aw-pipe-svg { display: block; width: 100%; height: 100%; }
 .aw-pipe-svg text { font-family: inherit; }
 .aw-pipe-op { opacity: 0; visibility: hidden; transition: opacity 0.4s ease; }
 .aw-pipe-op.is-on { opacity: 1; visibility: visible; }
 
-/* Four sizes only: 11 for labels, 14 for body, 17 for symbols, 20 for maths. */
 .aw-pipe-lab { font-size: 11px; letter-spacing: 0.07em; fill: var(--aw-muted); }
-.aw-pipe-head { font-size: 12px; letter-spacing: 0.085em; font-weight: 700; fill: var(--aw-ink); }
-.aw-pipe-side { font-size: 11px; letter-spacing: 0.1em; font-weight: 700; fill: var(--aw-ink); }
+.aw-pipe-head { font-size: 12px; letter-spacing: 0.08em; font-weight: 700; fill: var(--aw-ink); }
+.aw-pipe-sym { font-size: 16px; fill: var(--aw-ink); }
+.aw-pipe-sym.is-it { font-style: italic; }
+/* Google Sans has no summation, nabla, asterisk-operator or script capital E,
+   so those words silently changed font mid-string. Maths now gets a maths
+   face deliberately, and every super/subscript is a real tspan. */
+.aw-pipe-math,
+.aw-pipe-sum,
+.aw-pipe-vlab { font-size: 15px; font-weight: 600; fill: var(--aw-ink); }
+.aw-pipe-sub { font-size: 10px; fill: var(--aw-ink); }
 .aw-pipe-el { font-size: 14px; fill: var(--aw-ink); }
 .aw-pipe-el.is-bb { font-size: 13px; font-weight: 600; fill: #6b4e00; }
+.aw-pipe-el.is-name { font-weight: 700; }
+.aw-pipe-rule { font-size: 21px; fill: var(--aw-ink); }
 .aw-pipe-note { font-size: 12px; fill: var(--aw-muted); }
-.aw-pipe-fn { font-size: 14px; font-style: italic; fill: var(--aw-ink); }
-.aw-pipe-sym, .aw-pipe-vlab { font-size: 17px; fill: var(--aw-ink); }
-.aw-pipe-vlab { font-weight: 600; }
-.aw-pipe-sym.is-it, .aw-pipe-sc { font-style: italic; }
-.aw-pipe-sc { font-size: 17px; fill: var(--aw-ink); }
-.aw-pipe-name { font-weight: 700; }
-.aw-pipe-estar { font-size: 17px; font-weight: 600; fill: var(--aw-ink); }
-.aw-pipe-rule { font-size: 20px; fill: var(--aw-ink); }
-.aw-pipe-paren { font-size: 20px; fill: var(--aw-muted); }
-.aw-pipe-paren.is-small { font-size: 14px; }
-/* Google Sans carries no summation, nabla, asterisk-operator or script capital
-   E, so those fell back mid-word. Set deliberately in a maths face instead. */
-.aw-pipe-sum, .aw-pipe-math {
-  font-family: "Cambria Math", "STIX Two Math", "Latin Modern Math", Georgia, "Times New Roman", serif;
-}
-.aw-pipe-sum { font-size: 22px; fill: var(--aw-ink); }
+.aw-pipe-side { font-size: 12px; letter-spacing: 0.09em; font-weight: 700; fill: var(--aw-ink); }
 
 .aw-pipe-caption {
   margin: 0 0 0.9rem;
@@ -452,7 +445,6 @@ h1.title.publication-title { font-size: 2.6rem; }
   /* two lines reserved, so advancing a step never nudges the figure */
   min-height: 3.1em;
 }
-.aw-pipe-caption b { color: var(--aw-accent); font-weight: 700; }
 
 @media screen and (max-width: 800px) {
   .aw-pipe { padding: 1rem 0.8rem; }
@@ -538,3 +530,7 @@ h1.title.publication-title { font-size: 2.6rem; }
   fill: currentColor;
   vertical-align: -0.125em;
 }
+
+/* KaTeX rendered inside the figure's foreignObjects */
+.aw-pipe-tex { color: var(--aw-ink); line-height: 1; white-space: nowrap; }
+.aw-pipe-tex .katex { font-size: 1em; }
