@@ -305,9 +305,22 @@ h1.title.publication-title { font-size: 2.6rem; }
 .aw-results { table-layout: fixed; min-width: 640px; }
 .aw-results th:first-child, .aw-results td:first-child { width: 4.5rem; }
 
-/* ---- ArchAttend pipeline: Figure 5, assembled step by step ---- */
+/* ---- ArchAttend: the two passes of Figure 5, assembled step by step ---- */
+.aw-pipe-title {
+  margin: 2rem 0 0.1rem;
+  color: var(--aw-ink);
+}
+.aw-pipe-title .n {
+  display: block;
+  margin-bottom: 0.15rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--aw-muted);
+}
 .aw-pipe {
-  margin: 1.6rem 0 2rem;
+  margin: 0.7rem 0 2rem;
   padding: 1.4rem 1.3rem 1.2rem;
   background: #fff;
   border: 1px solid var(--aw-border);
@@ -419,23 +432,27 @@ h1.title.publication-title { font-size: 2.6rem; }
 .aw-pipe-op { opacity: 0; visibility: hidden; transition: opacity 0.4s ease; }
 .aw-pipe-op.is-on { opacity: 1; visibility: visible; }
 
-.aw-pipe-lab { font-size: 11px; letter-spacing: 0.07em; fill: var(--aw-muted); }
-.aw-pipe-head { font-size: 12px; letter-spacing: 0.08em; font-weight: 700; fill: var(--aw-ink); }
-.aw-pipe-sym { font-size: 16px; fill: var(--aw-ink); }
-.aw-pipe-sym.is-it { font-style: italic; }
-/* Google Sans has no summation, nabla, asterisk-operator or script capital E,
-   so those words silently changed font mid-string. Maths now gets a maths
-   face deliberately, and every super/subscript is a real tspan. */
-.aw-pipe-math,
-.aw-pipe-sum,
-.aw-pipe-vlab { font-size: 15px; font-weight: 600; fill: var(--aw-ink); }
-.aw-pipe-sub { font-size: 10px; fill: var(--aw-ink); }
-.aw-pipe-el { font-size: 14px; fill: var(--aw-ink); }
-.aw-pipe-el.is-bb { font-size: 13px; font-weight: 600; fill: #6b4e00; }
-.aw-pipe-el.is-name { font-weight: 700; }
-.aw-pipe-rule { font-size: 21px; fill: var(--aw-ink); }
-.aw-pipe-note { font-size: 12px; fill: var(--aw-muted); }
-.aw-pipe-side { font-size: 12px; letter-spacing: 0.09em; font-weight: 700; fill: var(--aw-ink); }
+/* Mathematics goes through KaTeX, in a foreignObject, because Google Sans has
+   no summation, nabla, asterisk-operator, script capital E or superscript
+   plus, and a string containing one silently changes face mid-word.
+   Two placement recipes, and the measured coordinates assume exactly these:
+   -a places the formula's ink at an absolute point; -c centres it in its box. */
+.aw-pipe-fo-a > div { line-height: 0; white-space: nowrap; font-family: inherit; }
+/* nowrap is not optional: without it the expression wraps inside the box and
+   collapses to a column of fragments. */
+.aw-pipe-fo-a span.k { display: inline-block; vertical-align: top; }
+.aw-pipe-fo-c {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: visible;
+  pointer-events: none;
+  font-family: inherit;
+  color: var(--aw-ink);
+}
 
 .aw-pipe-caption {
   margin: 0 0 0.9rem;
@@ -445,7 +462,18 @@ h1.title.publication-title { font-size: 2.6rem; }
   /* two lines reserved, so advancing a step never nudges the figure */
   min-height: 3.1em;
 }
+.aw-pipe-cm { white-space: nowrap; }
 
+/* Below this width the figure would scale 1000 units into a phone and render
+   13px labels at under 5px, so it scrolls at a legible size instead. */
+@media screen and (max-width: 820px) {
+  .aw-pipe-figure {
+    aspect-ratio: auto;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+  .aw-pipe-svg { min-width: 760px; height: auto; }
+}
 @media screen and (max-width: 800px) {
   .aw-pipe { padding: 1rem 0.8rem; }
   .aw-pipe-controls { gap: 8px; }
@@ -459,6 +487,7 @@ h1.title.publication-title { font-size: 2.6rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .aw-pipe-op { transition: none; }
+  .aw-pipe-figure { transition: none; }
   .aw-pipe-steps button::before, .aw-pipe-steps button::after { transition: none; }
 }
 
