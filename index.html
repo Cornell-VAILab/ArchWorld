@@ -67,14 +67,14 @@
   <title>Towards Reconstructing Geographically Diverse Architecture with 3D Foundation Models</title>
   
   <!-- Favicon and App Icons -->
-  <link rel="icon" href="static/images/favicon.ico" sizes="48x48">
-  <link rel="icon" type="image/svg+xml" href="static/images/favicon.svg">
-  <link rel="apple-touch-icon" href="static/images/apple-touch-icon.png">
+  <link rel="icon" href="static/images/favicon.ico?v=5cf9924165" sizes="16x16 32x32 48x48 64x64">
+  <link rel="icon" type="image/svg+xml" href="static/images/favicon.svg?v=5cf9924165" sizes="any">
+  <link rel="apple-touch-icon" href="static/images/apple-touch-icon.png?v=5cf9924165">
   
   <!-- Critical CSS - Load synchronously -->
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/index.css">
-  <link rel="stylesheet" href="static/css/archworld.css">
+  <link rel="stylesheet" href="static/css/archworld.css?v=3f993681283b">
   <link rel="stylesheet" href="static/css/archattend.css?v=9304d345f1c6">
 
   <!-- KaTeX typesets a handful of formulas. Loaded with defer it sat on the
@@ -116,7 +116,7 @@
   <script defer src="static/js/index.js"></script>
   <script defer src="static/js/region_table.js"></script>
   <script defer src="static/js/archattend_diagrams.js"></script>
-  <script defer src="static/js/before_after_chart.js"></script>
+  <script defer src="static/js/before_after_chart.js?v=365bae2ed2b3"></script>
   <script defer src="static/js/teaser_video.js"></script>
   
   <!-- Structured Data for Academic Papers -->
@@ -413,15 +413,14 @@
     <div class="columns is-centered">
       <div class="column is-four-fifths">
         <div class="content has-text-justified aw-scva-context">
-          <!-- Paper narrative: overleaf_paper/5-method.tex, introduction and Semantic Cross-View Attention. -->
-          <p>To further understand these failures, we first examine how 3D foundation models distribute cross-view attention across architectural and non-architectural elements. Rather than analyzing individual patch pairs, we aggregate this patch-level attention over <em>semantic</em> elements, i.e., groups of patches that depict the same element. In particular, we examine which kinds of architectural elements the model concentrates its cross-view attention on, and compare attention patterns between scenes with large and small reconstruction errors.</p>
-          <p>To support this investigation, we annotate each scene with pixel-level masks corresponding to two element sets: a set of architectural elements \(\mathcal{E}_{\mathrm{arch}}\) and a set of non-architectural elements \(\mathcal{E}_{\mathrm{non}}\). We denote the full element set \(\mathcal{E} = \mathcal{E}_{\mathrm{arch}} \cup \mathcal{E}_{\mathrm{non}}\) and use SAM 3 to segment elements across all images of each scene. We visualize Semantic Cross-View Attention (SCVA) by aggregating attention from each query patch \(i\) to key patches that share its semantic element.</p>
+          <!-- Condensed from overleaf_paper/5-method.tex, Semantic Cross-View Attention. -->
+          <p>To study reconstruction failures, we segment architectural elements \(\mathcal{E}_{\mathrm{arch}}\) and non-architectural elements \(\mathcal{E}_{\mathrm{non}}\) with SAM 3. We visualize Semantic Cross-View Attention (SCVA) by aggregating attention from each query patch \(i\) to key patches that share its semantic element.</p>
         </div>
         <!-- Eq. attention-score: the per-patch quantity visualized in the maps below. -->
         <div id="aw-scva-visualization" class="content has-text-justified aw-method-equation">
           <div class="aw-scva-formula">$$s_i = \sum_{j \in \mathcal{P}_e} \mathbf{A}^{l}[i,j]$$</div>
           <!-- Definitions and visualization: 5-method.tex and figures/motivation.tex. -->
-          <p>Here, \(\mathcal{P}_e\) is the set of patches across all input views covered by the segmentation mask of \(e \in \mathcal{E}\), and \(\mathbf{A}^{l}\) is the attention matrix of the \(l\)-th global attention layer averaged over heads. We visualize the SCVA score, the amount of attention each patch places on its own element in the other views (warm = high, cold = low).</p>
+          <p>Here, \(\mathcal{P}_e\) contains patches of element \(e\) across all input views, and \(\mathbf{A}^{l}\) is the attention matrix at global layer \(l\), averaged over heads. Warm colors indicate high SCVA scores; cold colors indicate low scores.</p>
         </div>
       </div>
     </div>
@@ -469,15 +468,20 @@
       <div class="column is-four-fifths">
         <div class="content has-text-justified">
           <!-- Original insight and motivation: overleaf_paper/5-method.tex, after Eq. attention-score. -->
-          <p class="aw-scva-insight">SCVA maps reveal a striking pattern: in scenes with low reconstruction error, cross-view attention concentrates on landmark-centric patches, while in high-error scenes it leaks onto semantically irrelevant regions (e.g., sky, water) that contribute little signal for reconstruction. To improve reconstruction in challenging scenes, we aim to redirect attention from such distractors toward semantically important architectural patches.</p>
-          <!-- Paper narrative: overleaf_paper/5-method.tex, Architecture-Centric Intervention. -->
-          <p class="awcr-intro">We propose <span class="sc">ArchAttend</span>, a 2-pass method that first identifies the main architectural element on which the model should establish correspondences, then increases attention to that element via gradient-ascent updates on the token representations. For each scene, <span class="sc">ArchAttend</span> selects an anchor element from \(\mathcal{E}_{\mathrm{arch}}\) that received the strongest cross-view attention.</p>
-          <p>By aggregating over the per-patch SCVA, we define the cumulative element-wise attention score at the last layer \(l_{\mathrm{last}}\) as</p>
+          <p class="aw-scva-insight">SCVA maps reveal a striking pattern: in scenes with low reconstruction error, cross-view attention concentrates on landmark-centric patches, while in high-error scenes it leaks onto semantically irrelevant regions (e.g., sky, water) that contribute little signal for reconstruction.</p>
+          <!-- Opening sentence verbatim from overleaf_paper/1-intro.tex; score setup condensed from 5-method.tex. -->
+          <p class="awcr-intro">Leveraging insights from model failings, we introduce <span class="sc">ArchAttend</span>, a training-free intervention scheme that improves reconstruction quality by steering cross-view attention toward semantically meaningful architectural elements. For each architectural element \(e \in \mathcal{E}_{\mathrm{arch}}\), we sum its patch scores at the last layer \(l_{\mathrm{last}}\):</p>
         </div>
         <!-- Eq. eq:anchor-score belongs to intervention, Pass 1, not visualization. -->
         <div id="aw-anchor-selection" class="content has-text-justified aw-method-equation">
           <div class="aw-scva-formula">$$S^{l_{\mathrm{last}}}(e) = \sum_{i \in \mathcal{P}_e} s_i$$</div>
-          <p>This score measures the total cross-view attention directed toward element \(e\), so that elements with stronger correspondence across views receive higher scores. The anchor is therefore \(e^* = \arg\max_{e \in \mathcal{E}_{\mathrm{arch}}} S^{l_{\mathrm{last}}}(e)\).</p>
+          <p>We select the anchor with the highest score: \(e^* = \arg\max_{e \in \mathcal{E}_{\mathrm{arch}}} S^{l_{\mathrm{last}}}(e)\).</p>
+        </div>
+        <!-- Eq. eq:gradient-update and Pass 2 explanation from 5-method.tex. -->
+        <div id="aw-gradient-update" class="content has-text-justified aw-method-equation">
+          <p>To increase attention to \(e^*\), we freeze all model parameters and treat \(\mathbf{T}^l\) as an optimizable latent, applying a single gradient-ascent step:</p>
+          <div class="aw-scva-formula">$$\mathbf{T}^l \leftarrow \mathbf{T}^l + \eta\,\nabla_{\mathbf{T}^l} S^l(e^*)$$</div>
+          <p>Here, \(\mathbf{T}^l\) denotes the token representations before the global attention block at layer \(l\), \(S^l(e^*)\) is the attention score of the anchor, and \(\eta\) is the step size. We apply this update at every global attention layer, redirecting downstream computation toward \(e^*\) without retraining the model.</p>
         </div>
       </div>
     </div>
@@ -494,49 +498,41 @@
 
 
 <!-- Results -->
-<section class="section hero is-light">
+<section id="results" class="section hero is-light">
   <div class="container is-max-desktop">
     <h2 class="title is-3 aw-section-title">Results</h2>
     <div class="columns is-centered">
       <div class="column is-four-fifths">
         <div class="content has-text-justified">
           <p>
-            Applied to DA3, <span class="sc">ArchAttend</span> lowers median \(\widehat{\mathrm{CD}}\) and narrows the gap between regions and architecture types.
+            <span class="sc">ArchAttend</span> improves reconstruction quality across DA3, VGGT, and \(\pi^3\). The intervention also narrows the performance gap across regions and architecture types, reducing DA3's regional disparity by 38.2% and architectural disparity by 33.5%. We report the best result over five step sizes for each scene, following the paper's evaluation protocol.
           </p>
         </div>
 
-        <div class="aw-ba">
-          <div class="aw-ba-card">
-            <span class="k">All scenes</span>
-            <span class="vals"><span class="before">10.36</span><span class="arrow">→</span>8.92</span>
-            <span class="delta">−13.9%</span>
+        <p class="aw-ba-metric">Median \(\widehat{\mathrm{CD}}\; (\times 10^{-3})\) · lower is better</p>
+        <div class="aw-ba-controls">
+          <div class="buttons has-addons aw-toggle" id="ba-model-tabs" role="tablist" aria-label="Results model">
+            <button class="button is-small is-active" id="ba-tab-da3" type="button" role="tab" data-model="da3" aria-selected="true" aria-controls="ba-charts">DA3</button>
+            <button class="button is-small" id="ba-tab-vggt" type="button" role="tab" data-model="vggt" aria-selected="false" aria-controls="ba-charts" tabindex="-1">VGGT</button>
+            <button class="button is-small" id="ba-tab-pi3" type="button" role="tab" data-model="pi3" aria-selected="false" aria-controls="ba-charts" tabindex="-1">\(\pi^3\)</button>
           </div>
-          <div class="aw-ba-card">
-            <span class="k">Regional gap</span>
-            <span class="vals"><span class="before">11.26</span><span class="arrow">→</span>6.96</span>
-            <span class="delta">−38.2%</span>
+          <div class="buttons has-addons aw-toggle" id="ba-toggle" role="group" aria-label="Group results by">
+            <button class="button is-small is-active" type="button" data-bucket="region" aria-pressed="true" aria-controls="ba-charts">By region</button>
+            <button class="button is-small" type="button" data-bucket="arch" aria-pressed="false" aria-controls="ba-charts">By architecture type</button>
           </div>
-          <div class="aw-ba-card">
-            <span class="k">Architectural gap</span>
-            <span class="vals"><span class="before">13.75</span><span class="arrow">→</span>9.14</span>
-            <span class="delta">−33.5%</span>
-          </div>
-        </div>
-
-        <div class="buttons has-addons is-centered aw-toggle" id="ba-toggle">
-          <button class="button is-small is-active" type="button" data-bucket="region">By region</button>
-          <button class="button is-small" type="button" data-bucket="arch">By architecture type</button>
         </div>
         <div class="aw-ba-legend">
           <span><span class="swatch" style="background:#ff6060"></span>Before</span>
           <span><span class="swatch" style="background:#ffa726"></span>After <span class="sc">ArchAttend</span></span>
-          <span>Buckets ordered hardest to easiest by the baseline.</span>
         </div>
-        <div class="aw-ba-chart">
-          <div id="before-after-chart"></div>
-          <div class="aw-ba-tip"></div>
+        <div id="ba-charts" class="aw-ba-panel" role="tabpanel" aria-labelledby="ba-tab-da3">
+          <div class="aw-ba-chart">
+            <div class="aw-ba-plot"></div>
+            <div class="aw-ba-tip"></div>
+          </div>
+          <p class="aw-ba-summary" aria-live="polite" aria-atomic="true"></p>
         </div>
-        <p class="aw-ba-summary" id="ba-summary"></p>
+        <p class="aw-ba-note">Buckets are ordered from highest to lowest baseline error. Gap = highest − lowest bucket median.</p>
 
         <figure class="aw-figure">
           <img src="static/images/fig_qualitative.webp" alt="Qualitative reconstructions before and after ArchAttend for Toronto City Hall, Shore Temple, Chichen Itza, and Heian-jingu" loading="lazy" onerror="this.parentElement.classList.add('is-missing')">

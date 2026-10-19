@@ -260,54 +260,25 @@ h1.title.publication-title { font-size: 2.6rem; }
   .aw-steps { grid-template-columns: 1fr; }
 }
 
-/* ---------- Before / after result cards ---------- */
-.aw-ba {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.75rem;
-  margin: 1.25rem 0 0.5rem;
-}
-.aw-ba-card {
-  border: 1px solid var(--aw-border);
-  border-radius: 10px;
-  padding: 0.9rem;
-  background: #fff;
-  text-align: center;
-}
-.aw-ba-card .k {
-  font-size: 0.8rem;
-  color: var(--aw-muted);
-  display: block;
-  margin-bottom: 0.35rem;
-}
-.aw-ba-card .vals {
-  font-size: 1.35rem;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-}
-.aw-ba-card .vals .before { color: #9ca3af; text-decoration: line-through; font-weight: 500; }
-.aw-ba-card .vals .arrow { color: #9ca3af; margin: 0 0.3rem; font-weight: 400; }
-.aw-ba-card .delta {
-  display: block;
-  font-size: 0.8rem;
-  color: var(--aw-good);
-  font-weight: 600;
-  margin-top: 0.2rem;
-}
-@media (max-width: 768px) {
-  .aw-ba { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 480px) {
-  .aw-ba { grid-template-columns: 1fr; }
-}
-
 /* Region results: fixed, equal-width columns so switching metrics doesn't resize the table */
 .aw-results { table-layout: fixed; min-width: 640px; }
 .aw-results th:first-child, .aw-results td:first-child { width: 4.5rem; }
 
 /* ---- Before/after chart ---- */
+.aw-ba-metric { text-align: center; color: var(--aw-muted); font-size: 0.9rem; margin-bottom: 1rem; }
+.aw-ba-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.6rem 1.5rem; margin-bottom: 1rem; }
+.aw-ba-controls .buttons { margin-bottom: 0; }
+.aw-ba-controls .button { margin-bottom: 0; }
+#ba-model-tabs .button { min-width: 4.25rem; }
+#ba-model-tabs .katex { font-size: 1em; }
+.aw-ba-panel { margin-top: 0.3rem; }
+.aw-ba-before { color: #d53e3e; font-weight: 600; }
+.aw-ba-after { color: #a85c00; font-weight: 600; }
 .aw-ba-chart { position: relative; overflow-x: auto; margin-top: 0.3rem; }
-.aw-ba-svg { width: 100%; min-width: 620px; height: auto; }
+@media (min-width: 1024px) {
+  .aw-ba-chart { margin-left: -4rem; margin-right: -4rem; }
+}
+.aw-ba-svg { display: block; width: 100%; height: auto; }
 .aw-ba-svg text { font-family: inherit; }
 .aw-ba-tick { font-size: 12px; fill: var(--aw-muted); }
 .aw-ba-axis { font-size: 12px; fill: var(--aw-muted); }
@@ -346,8 +317,10 @@ h1.title.publication-title { font-size: 2.6rem; }
 .aw-ba-tip .bad { color: #fca5a5; }
 .aw-ba-legend {
   display: flex;
+  flex-wrap: wrap;
   gap: 1.1rem;
   align-items: center;
+  justify-content: center;
   font-size: 0.85rem;
   color: var(--aw-muted);
   margin-bottom: 0.5rem;
@@ -359,8 +332,9 @@ h1.title.publication-title { font-size: 2.6rem; }
   margin-right: 0.35rem;
   vertical-align: -1px;
 }
-.aw-ba-summary { font-size: 0.9rem; color: var(--aw-muted); margin-top: 0.5rem; }
+.aw-ba-summary { font-size: 0.95rem; color: var(--aw-muted); margin-top: 0.75rem; text-align: center; }
 .aw-ba-summary .good { color: var(--aw-good); font-weight: 600; }
+.aw-ba-note { font-size: 0.85rem; color: var(--aw-muted); margin-top: 0.4rem; text-align: center; }
 
 @media (prefers-reduced-motion: reduce) {
   .aw-ba-bar { animation: none; }
