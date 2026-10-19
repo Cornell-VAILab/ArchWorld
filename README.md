@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a href="https://arxiv.org/abs/XXXX.XXXXX"><img src="https://img.shields.io/badge/arXiv-coming%20soon-B31B1B" alt="arXiv"></a>
+  <a href="https://arxiv.org/abs/2610.22514"><img src="https://img.shields.io/badge/arXiv-2610.22514-B31B1B" alt="arXiv"></a>
   <a href="https://cornell-vailab.github.io/ArchWorld/"><img src="https://img.shields.io/badge/Project-Page-487F69" alt="Project page"></a>
   <a href="https://huggingface.co/datasets/ArchWorld/ArchWorld"><img src="https://img.shields.io/badge/Dataset-ArchWorld-FFD21E" alt="Dataset"></a>
 </p>
