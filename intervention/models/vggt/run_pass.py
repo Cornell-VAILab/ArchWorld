@@ -1757,6 +1757,7 @@ def main(scene_name=None, work_dir=None, model=None):
         if model is None:
             print("Loading VGGT-1B...")
             model = VGGT.from_pretrained("facebook/VGGT-1B").to(device)
+            if os.environ.get("VGGT_HALF") == "1": model = model.to(dtype)
             model.eval()
         else:
             model = model.to(device)

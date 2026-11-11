@@ -4,3 +4,9 @@ __pycache__/
 results/
 intervention/assets/skyseg.onnx
 skyseg.onnx
+
+data
+masks
+results
+third_party/
+.archattend_work/
