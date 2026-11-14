@@ -15,6 +15,7 @@ Then:
     VGGT_HALF=1 python eval/evaluate.py --model vggt \
         --geocoded_csv results/eval_inputs/scenes.csv \
         --sam_features_dir results/eval_inputs/views \
+        --sky_masks_dir results/vggt_base/sky_masks \
         --output_base results/vggt_base/points --output_csv results/vggt_base/metrics
 
 evaluate.py appends the model name to both, giving results/vggt_base/points_vggt/
