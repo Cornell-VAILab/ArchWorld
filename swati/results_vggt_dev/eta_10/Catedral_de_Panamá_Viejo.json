@@ -1,0 +1,12 @@
+{
+  "first_intervention_layer": 0,
+  "last_intervention_layer": 23,
+  "inter": {
+    "Acc-mean": 0.0370010429846197,
+    "Acc-med": 0.0073248651872615846,
+    "Comp-mean": 0.010877063131758322,
+    "Comp-med": 0.002574812342807467,
+    "Score": 0.02393905305818901
+  },
+  "intervention_tag": "tower"
+}

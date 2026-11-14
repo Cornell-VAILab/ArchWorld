@@ -1,0 +1,12 @@
+{
+  "first_intervention_layer": 0,
+  "last_intervention_layer": 23,
+  "inter": {
+    "Acc-mean": 0.02857799532227947,
+    "Acc-med": 0.007763385214234142,
+    "Comp-mean": 0.011736068897063924,
+    "Comp-med": 0.006384931285041254,
+    "Score": 0.020157032109671697
+  },
+  "intervention_tag": "facade"
+}

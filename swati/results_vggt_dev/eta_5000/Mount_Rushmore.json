@@ -1,0 +1,12 @@
+{
+  "first_intervention_layer": 0,
+  "last_intervention_layer": 23,
+  "inter": {
+    "Acc-mean": 0.03259901794410058,
+    "Acc-med": 0.009911881672925449,
+    "Comp-mean": 0.007460833682163453,
+    "Comp-med": 0.004211724535903569,
+    "Score": 0.020029925813132017
+  },
+  "intervention_tag": "statue"
+}

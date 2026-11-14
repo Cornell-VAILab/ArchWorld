@@ -1,0 +1,12 @@
+{
+  "first_intervention_layer": 0,
+  "last_intervention_layer": 23,
+  "inter": {
+    "Acc-mean": 0.05474097142961141,
+    "Acc-med": 0.016298691547905343,
+    "Comp-mean": 0.018326620193626127,
+    "Comp-med": 0.006456303446046471,
+    "Score": 0.036533795811618766
+  },
+  "intervention_tag": "gate"
+}

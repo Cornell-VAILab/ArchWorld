@@ -1,0 +1,12 @@
+{
+  "first_intervention_layer": 0,
+  "last_intervention_layer": 23,
+  "inter": {
+    "Acc-mean": 0.012120438438935417,
+    "Acc-med": 0.006682605363434471,
+    "Comp-mean": 0.004688680574244364,
+    "Comp-med": 0.002706619481097393,
+    "Score": 0.00840455950658989
+  },
+  "intervention_tag": "window"
+}

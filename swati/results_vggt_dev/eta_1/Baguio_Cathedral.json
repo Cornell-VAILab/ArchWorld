@@ -1,0 +1,12 @@
+{
+  "first_intervention_layer": 0,
+  "last_intervention_layer": 23,
+  "inter": {
+    "Acc-mean": 0.041807615114057256,
+    "Acc-med": 0.004947573980827532,
+    "Comp-mean": 0.004623828148658919,
+    "Comp-med": 0.003809609275437473,
+    "Score": 0.02321572163135809
+  },
+  "intervention_tag": "bell tower"
+}

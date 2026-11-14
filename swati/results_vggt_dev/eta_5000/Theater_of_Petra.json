@@ -1,0 +1,12 @@
+{
+  "first_intervention_layer": 0,
+  "last_intervention_layer": 23,
+  "inter": {
+    "Acc-mean": 0.054552817156640836,
+    "Acc-med": 0.04269565494024338,
+    "Comp-mean": 0.012961167180512463,
+    "Comp-med": 0.004105862243687196,
+    "Score": 0.03375699216857665
+  },
+  "intervention_tag": "arch"
+}

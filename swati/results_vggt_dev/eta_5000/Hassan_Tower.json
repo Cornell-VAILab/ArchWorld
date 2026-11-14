@@ -1,0 +1,12 @@
+{
+  "first_intervention_layer": 0,
+  "last_intervention_layer": 23,
+  "inter": {
+    "Acc-mean": 0.11613706078287193,
+    "Acc-med": 0.032732679214969904,
+    "Comp-mean": 0.15084986851807564,
+    "Comp-med": 0.0910198115026167,
+    "Score": 0.1334934646504738
+  },
+  "intervention_tag": "pillar"
+}

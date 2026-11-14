@@ -1,0 +1,12 @@
+{
+  "first_intervention_layer": 0,
+  "last_intervention_layer": 23,
+  "inter": {
+    "Acc-mean": 0.056428261266341664,
+    "Acc-med": 0.008685923521814604,
+    "Comp-mean": 0.01675467866253618,
+    "Comp-med": 0.006238308248990285,
+    "Score": 0.03659146996443892
+  },
+  "intervention_tag": "dome"
+}
