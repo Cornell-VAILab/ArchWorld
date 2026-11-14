@@ -921,6 +921,9 @@ def main():
     print(f"Loading {args.model.upper()} model on {device}...")
     if args.model == 'vggt':
         model = VGGT.from_pretrained("facebook/VGGT-1B").to(device)
+        # Same switch as intervention/models/vggt/run_pass.py: half-precision weights
+        # so 50 views fit on a 16 GB GPU. Unset, behaviour is unchanged.
+        if os.environ.get("VGGT_HALF") == "1": model = model.to(dtype)
     elif args.model == 'vggt-ft':
         model = VGGT.from_pretrained("facebook/VGGT-1B").to(device)
         ckpt_path = "/share/phoenix/nfs06/S9/yl4355/logs/finetune_vggt/finetune_full-full_data-refine_data-v2/ckpts/checkpoint_100.pt"
