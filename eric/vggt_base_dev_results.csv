@@ -1,0 +1,40 @@
+scene,region,arch_type,status,views_used,acc_mean,acc_med,comp_mean,comp_med,cd,cd_m,cd_norm
+Dendera,Africa,Misc,ok,43,0.881369,0.134977,0.019099,0.0101266,0.450234,6.17827,98.3357
+Paul_Kruger_Church,Africa,Church/Cathedral,ok,50,0.393053,0.248548,0.219359,0.115783,0.306206,1.18371,24.4765
+Basilique_de_l'Immaculée_Conception_(Ouidah),Africa,Church/Cathedral,ok,50,0.213864,0.182443,0.498089,0.269251,0.355977,2.25956,31.3558
+Hassan_Tower,Africa,Mosque,ok,49,0.0441138,0.0337116,0.314734,0.295431,0.179424,4.03325,64.7379
+Red_House_Theater,East Asia,Public Building,ok,50,0.526682,0.0872074,0.265907,0.155968,0.396294,1.05607,41.1665
+Kumano_Hongu_Taisha,East Asia,Temple/Shrine,ok,49,0.214192,0.138958,0.122457,0.104168,0.168325,0.77826,11.5083
+Shuri_Castle,East Asia,Misc,ok,43,0.445916,0.334821,0.807022,0.667981,0.626469,2.25984,42.6888
+"Cathedral_of_Holy_Wisdom,_Harbin",East Asia,Church/Cathedral,ok,49,0.376567,0.0363149,0.0308455,0.00951712,0.203706,1.85149,29.7219
+Saint_Sophia_Cathedral_in_Novgorod,Europe,Church/Cathedral,ok,50,0.110275,0.0423693,0.0848939,0.0611737,0.0975846,1.62229,16.3644
+Assumption_Cathedral_in_Moscow,Europe,Church/Cathedral,ok,49,0.0740371,0.00703313,0.0088459,0.0053026,0.0414415,0.631146,7.34347
+Hermesvilla,Europe,Misc,ok,46,0.189573,0.0458307,0.0415767,0.0282892,0.115575,0.890466,10.619
+Stadhuis_(Gouda),Europe,Public Building,ok,49,0.0796695,0.0155413,0.0487181,0.00772427,0.0641938,0.952209,13.2587
+Slovak_National_Theatre_(old_building),Europe,Public Building,ok,50,0.0486274,0.0297887,0.0833929,0.0397379,0.0660102,0.614172,9.29116
+"San_Francisco_Church,_Mexico_City",Latin America,Church/Cathedral,ok,50,0.639968,0.0489713,0.0486006,0.0202922,0.344284,1.0644,24.3078
+Igreja_de_São_Francisco_de_Assis_(Ouro_Preto),Latin America,Church/Cathedral,ok,50,0.0583072,0.00611664,0.00955804,0.00473176,0.0339326,0.326664,7.2806
+Santa_Prisca_Church_(Taxco_de_Alarcón),Latin America,Church/Cathedral,ok,50,0.0778579,0.0121153,0.00890746,0.00716289,0.0433827,0.27513,6.27469
+Basílica_Colegiata_de_Nuestra_Señora_de_Guanajuato,Latin America,Church/Cathedral,ok,49,0.146318,0.014231,0.0146722,0.00758042,0.0804951,0.814626,9.32517
+Catedral_de_Panamá_Viejo,Latin America,Misc,ok,43,0.25426,0.0428196,0.0253304,0.0171972,0.139795,1.83251,27.5189
+Bellagio_Hotel_&_Casino,North America,Tower,ok,50,0.388542,0.0718368,0.118036,0.0684421,0.253289,10.0941,34.6377
+7_West_54th_Street,North America,Misc,ok,50,0.856887,0.0500332,0.0210081,0.013367,0.438947,1.4123,54.1632
+Iolani_Palace,North America,Misc,ok,47,0.143771,0.00865028,0.0270418,0.014905,0.0854062,2.26618,33.9195
+Mount_Rushmore,North America,Misc,ok,42,1.47454,0.209159,0.0686611,0.0279738,0.771601,32.9008,255.28
+Disney_California_Adventure_Park,North America,Misc,ok,50,0.642075,0.616103,0.670392,0.524988,0.656234,5.97868,31.362
+Immaculate_Conception_Parish_Church_of_Bauan,SE Asia,Church/Cathedral,ok,50,0.0651471,0.00536613,0.00919957,0.0057047,0.0371733,0.243385,4.36046
+Aguinaldo_Shrine,SE Asia,Public Building,ok,50,0.235103,0.155294,0.136618,0.0972322,0.18586,1.75133,21.3247
+Manila_Central_Post_Office,SE Asia,Public Building,ok,50,0.65957,0.0969073,0.0306838,0.0134169,0.345127,8.29603,56.7568
+Baguio_Cathedral,SE Asia,Church/Cathedral,ok,50,1.31766,0.0177693,0.010243,0.00700274,0.663949,3.8037,110.101
+Taal_Basilica,SE Asia,Church/Cathedral,ok,50,0.250251,0.0135586,0.0164648,0.0111061,0.133358,1.19607,17.2594
+Qila-i-Kuhna_mosque,South Asia,Mosque,ok,49,0.0580708,0.00672502,0.0275299,0.00786829,0.0428004,0.235136,3.46745
+Murdeshwar_Shiva_Statue,South Asia,Monument,ok,50,0.590279,0.177256,0.0320059,0.0118404,0.311142,7.02852,96.9143
+Mysore_Palace,South Asia,Misc,ok,50,0.165454,0.0224659,0.0178477,0.0123796,0.0916507,2.95535,20.1252
+Isa_Khan_Niyazi's_tomb,South Asia,Tomb,ok,50,0.0367678,0.0249439,0.235124,0.194556,0.135946,1.25217,19.7671
+"Jama_Masjid,_Delhi",South Asia,Mosque,ok,50,0.125206,0.0985649,0.26609,0.181205,0.195648,3.40662,27.0241
+Jama_Masjid_(Ahmedabad),South Asia,Mosque,ok,50,0.16462,0.0334305,0.0283972,0.0193452,0.0965086,0.936184,12.5955
+Karim_Khan_Citadel,West/Central Asia,Misc,ok,50,0.0761173,0.0300667,0.0125538,0.00858286,0.0443356,0.4949,3.82278
+Golestan_Palace,West/Central Asia,Misc,ok,50,0.0547708,0.0354715,0.0373815,0.0180061,0.0460761,0.448104,3.74337
+Azadi_Tower,West/Central Asia,Tower,ok,49,0.0796558,0.0292935,0.0880753,0.0527724,0.0838655,1.50159,16.0836
+Theater_of_Petra,West/Central Asia,Public Building,ok,43,0.036879,0.0147019,0.0121236,0.00647065,0.0245013,1.13844,4.74145
+Bell_tower_of_Vank_Cathedral,West/Central Asia,Tower,ok,21,0.135096,0.0803436,0.1596,0.0795156,0.147348,0.340914,5.6388
