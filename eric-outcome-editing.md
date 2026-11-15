@@ -45,7 +45,27 @@ bash eric/run_base_per_scene.sh scenes_dev.txt results/vggt_base
   loaded all 50 views). The V100 subset was unusable. Kept in `results/vggt_base_v100/` as a record.
 - Switched the VM to an **NVIDIA L4 (24 GB)**. Paul_Kruger_Church (failed on V100) now runs with all
   50 views: score 0.306. All dev scenes are re-run on the L4 from scratch so precision is uniform.
-- Per-scene run on the L4, 39 dev scenes: _running — results to be filled in._
+- **Per-scene run on the L4, 39 dev scenes: 39 / 39 ok** (21:36 → 00:58, incl. retry).
+  37 ok in the main pass; the 2 out-of-memory scenes below passed on retry with the GPU idle.
+  Results: **`eric/vggt_base_dev_results.csv`** (one row per scene: region, type, views used,
+  Acc/Comp mean & median, CD, CD_m, CD_norm). Every `metrics.json` matches `metrics_vggt.csv`.
+  - **Median over 39 scenes: CD 0.140 · CD_m 1.25 m · CD_norm 20.13** (CD_norm as in `aggregate.py`).
+  - By region (median CD_norm, n): Africa 48.05 (4), East Asia 35.44 (4), North America 34.64 (5),
+    SE Asia 21.32 (5), South Asia 19.95 (6), Europe 10.62 (5), Latin America 9.33 (5),
+    West/Central Asia 4.74 (5).
+  - By type: Church/Cathedral 16.81 (12), Misc 31.36 (11), Public Building 17.29 (6),
+    Mosque 19.81 (4), Tower 16.08 (3); Monument, Temple/Shrine and Tomb have 1 scene each.
+  - Best: Qila-i-Kuhna_mosque 3.47, Golestan_Palace 3.74. Worst: Baguio_Cathedral 110.1,
+    Mount_Rushmore 255.3 — one outlier, so use medians, not means.
+  - Bell_tower_of_Vank_Cathedral used only 21 views (few of its views have GT depth); all others 42–50.
+  - n is 4–6 per region: regional medians on the dev split are noisy.
+  - First 15 scenes all ok. Then out-of-memory at 23:28–23:35 on `Santa_Prisca_Church_(Taxco_de_Alarcón)`
+    (#16) and `Basílica_Colegiata_de_Nuestra_Señora_de_Guanajuato` (#17), inside VGGT's forward pass.
+    Not caused by the scenes: VGGT pads every image in a batch to the largest one, so every 50-view
+    scene here is 50 × 518×518 (~69k tokens), the same as scenes that passed. Likely cause: a SAM 3
+    mask job started in the other worktree (`ArchWorld-predict-ita-from-pass-1-signal`) and was using
+    the same GPU at that time. **Do not run GPU jobs concurrently with this run.** Failed scenes can
+    be retried by re-running the script (it skips finished scenes).
 
 ## Constraints and caveats
 
@@ -55,8 +75,8 @@ bash eric/run_base_per_scene.sh scenes_dev.txt results/vggt_base
   50 frames on an H100). The L4 fits 50 views for base evaluation; whether it fits *every* dev scene
   is what the current run shows. ArchAttend needs more memory than base and may not fit on 24 GB.
 - **CPU-bound: 4 vCPUs (`g2-standard-4`).** The GPU only runs the VGGT forward pass (seconds); GT
-  point generation, RANSAC + ICP alignment, sky segmentation (ONNX on CPU), GLB export and Chamfer
-  run on the CPU, which sits at ~100% on all 4 cores. ~3–5 min per scene, up to ~22 min for heavy
+  point generation, RANSAC alignment (numpy, 1000 iterations; evaluate.py has no ICP), sky
+  segmentation (onnxruntime on CPU), GLB export (trimesh) and Chamfer (scipy KD-tree) run on the CPU, which sits at ~100% on all 4 cores. ~3–5 min per scene, up to ~22 min for heavy
   scenes. `g2-standard-8` (same L4, 8 vCPUs) would roughly halve this; kept 4 vCPUs for now.
 - **Resumable.** A VM stop/start loses only the scene in progress; re-running
   `bash eric/run_base_per_scene.sh scenes_dev.txt results/vggt_base` skips scenes with a
@@ -67,6 +87,8 @@ bash eric/run_base_per_scene.sh scenes_dev.txt results/vggt_base
   - regional breakdowns can be skewed if some regions drop out;
   - the subset may be small.
   The base-vs-ArchAttend comparison is still fair **if swati's numbers are restricted to the same scenes.**
+  On the L4, 50-view scenes fit when the GPU is not shared, so the subset bias should be small; any
+  scene that still fails after a retry on an idle GPU needs its region / type checked.
 - **Precision depends on the GPU.** `VGGT_HALF=1` stores weights in bf16 on the L4 (fp16 on the
   V100, which risks overflow). bf16 is safer but can still drift slightly from the paper. Only
   comparable to swati if she ran the same precision: same `VGGT_HALF` setting *and* a GPU of the same
