@@ -67,6 +67,92 @@ bash eric/run_base_per_scene.sh scenes_dev.txt results/vggt_base
     the same GPU at that time. **Do not run GPU jobs concurrently with this run.** Failed scenes can
     be retried by re-running the script (it skips finished scenes).
 
+## Run 2b — base through `run.py` at η=0 (branch `eric/vggt-base-eta0`, 2026-11-15)
+
+**Why.** Swati lined the `evaluate.py` base up with her η=1 numbers: CD ~4.4× higher at the median
+(Mount_Rushmore 38×), scene ranks only loosely agree (Spearman 0.45). The two pipelines score
+differently, so the `evaluate.py` CSV cannot be the "before" for ArchAttend. It stays as a separate
+result ("VGGT on the benchmark, dev subset"). Differences, largest first:
+- `evaluate.py` was run without `--filter_pred`, so predictions were not masked with
+  `manual_filtration_masks` (on Baguio_Cathedral, filtering alone: CD_norm 110.1 → 4.43);
+- no ICP in `evaluate.py` (`run.py` sets `USE_ICP=1`);
+- precision: that run was bf16 (`VGGT_HALF=1` on the L4); swati's η runs are fp32.
+
+**What.** Untouched VGGT through swati's exact pipeline: `run.py` at η=0. In VGGT's `loss.py`
+the step is `x -= η·g = x`, attention cannot rise, so the step is discarded and the original tokens
+are kept (log: Δ0.000000 at all 24 layers). Same scoring code as her sweep: ICP + filtration masks.
+
+```bash
+conda activate archworld
+unset VGGT_HALF                       # fp32, like swati
+export SKIP_BASELINE_PASS=1 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True PYTHONUNBUFFERED=1
+python intervention/run.py --model vggt --root data \
+  --masks-dir /home/eric/ArchWorld-predict-ita-from-pass-1-signal/pass1_out/masks \
+  --scenes-file scenes_dev.txt --eta 0 --out results/vggt_dev
+python eric/collect_eta0.py           # -> eric/vggt_base_eta0_dev_results.csv
+```
+
+- **Masks:** reused from the Pass 1 worktree (`make_masks_full.py`), not regenerated. It calls the
+  repo's `make_masks` with the same SAM 3 threshold (0.5) and layout, just more elements, so the anchor
+  masks are the ones `make_masks.py` makes. At η=0 the masks cannot change the prediction anyway.
+- **Environment fix:** `open3d` (ICP) needed the system library `libusb-1.0`. Without it the eval step
+  failed with `Inter eval: failed (libusb-1.0.so.0 ...)` but `run.py` still exited 0 and printed "Done."
+  — no `eval_metrics_*.json` was written. Check the JSON count, not the exit code.
+- **Detached run:** `results/vggt_dev_eta0_logs/run_all.sh`, started with `setsid nohup` at 05:53 UTC so
+  it survives closing the session/VSCode (not stopping the VM). Resumable: scenes with
+  `eval_metrics_0_23.json` are skipped. `collect_when_done.sh` (also detached) runs `collect_eta0.py`
+  when the run writes `DONE`, output in `results/vggt_dev_eta0_logs/summary.txt`.
+
+Progress:
+```bash
+ls results/vggt_dev/output_0/*/eval_metrics_0_23.json | wc -l          # of 39
+grep -E "^\[eta=0\]|Inter eval" results/vggt_dev_eta0_logs/run_all.log | tail -4
+cat results/vggt_dev_eta0_logs/summary.txt                              # after DONE
+```
+
+**Outcomes.**
+- Dendera smoke test (fp32, L4, ~5–6 min, fits in memory): `Intervention token mask: 22821`,
+  filtration masks on 50/50 views.
+
+  | Dendera | Acc-mean | Acc-med | Comp-mean | Comp-med | CD | CD_norm |
+  |---|---|---|---|---|---|---|
+  | η=0, run.py (this run) | 0.0676 | 0.0217 | 0.0096 | 0.0052 | 0.0386 | 8.43 |
+  | swati η=1 | 0.0680 | 0.0208 | 0.0085 | 0.0049 | 0.0382 | 8.35 |
+  | swati best η (100) | | | | | 0.0382 | 8.34 |
+  | evaluate.py base (bf16, unfiltered) | 0.881 | 0.135 | 0.019 | 0.010 | 0.450 | 98.34 |
+
+  η=0 is within 1% of swati's η=1; her 5 η values span ~6% on this scene (incl. unseeded RANSAC
+  noise). Pipeline change alone: ~12× lower CD than `evaluate.py`.
+- **All 39 dev scenes: 39 / 39 scored** (05:55 → 11:42 UTC, ~9 min/scene, fp32 fits on the L4;
+  no eval failures, no out-of-memory, no zero token masks). Per-scene numbers:
+  **`eric/vggt_base_eta0_dev_results.csv`** (η=0 Acc/Comp mean & median, CD, CD_m, CD_norm, next to
+  swati's η=1 and best-η CD_norm, her best η, and the `evaluate.py` CD_norm).
+
+  | median over 39 dev scenes | CD_norm |
+  |---|---|
+  | **η=0 base, run.py (this run)** | **3.89** |
+  | swati η=1 | 3.85 |
+  | swati best η per scene (oracle) | 3.63 |
+  | `evaluate.py` base (bf16, unfiltered) | 20.13 |
+
+  Means (outliers weigh in): η=0 7.47, oracle 7.09.
+  - **η=0 matches swati's pipeline.** Per scene, swati-η=1 / η=0 has median 0.998 (IQR 0.98–1.01);
+    Spearman rank correlation 0.997 (vs 0.63 for `evaluate.py`). Largest gaps: Aguinaldo_Shrine 0.80,
+    Shuri_Castle 1.29 — η=1 is either noise (unseeded RANSAC) or a real small nudge on those scenes.
+  - **This is the "before" for ArchAttend.** Oracle best η vs η=0: median improvement **3.0%**
+    (mean 5.6%); >5% on 16 scenes; worse than η=0 on 4 (best η is the min over 5 runs, so on those
+    every η hurt). Biggest gains: Isa_Khan_Niyazi's_tomb 42.6% (η=1000), Aguinaldo_Shrine 27.0%,
+    Jama_Masjid,_Delhi 20.9%, Cathedral_of_Holy_Wisdom,_Harbin 16.3% (η=5000),
+    Disney_California_Adventure_Park 13.2% (η=100).
+  - **Caveat on the oracle gain:** "best" is the minimum over 5 noisy runs, so part of the 3% is
+    selection on noise (η=0 vs η=1 alone varies ±2% at the IQR). A fair estimate needs repeated η=0
+    runs or seeded RANSAC.
+  - Best η per scene: 5000 ×16, 100 ×7, 1000 ×7, 10 ×5, 1 ×4 — scene-dependent, as `AGENTS.md` says.
+  - By region (median CD_norm, n): Latin America 1.87 (5), West/Central Asia 1.94 (5), Europe 3.07 (5),
+    SE Asia 3.89 (5), South Asia 5.27 (6), North America 6.31 (5), East Asia 11.02 (4), Africa 20.19 (4).
+    n is 4–6 per region, so these are noisy.
+  - The `evaluate.py` base is 1.1×–40× higher per scene (median 4.0×), consistent with swati's 4.4×.
+
 ## Constraints and caveats
 
 - **GPU: now NVIDIA L4, 24 GB** (was Tesla V100, 16 GB). On the V100, 50 views did not fit for
